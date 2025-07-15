@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="confirmation-container">
+            <!-- Success Message -->
+            <div class="confirmation-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1>Booking Confirmed!</h1>
+                <p>Your service has been successfully booked. The professional will contact you shortly.</p>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="confirmation-details">
+                <div class="booking-info-card">
+                    <h3>Booking Details</h3>
+                    <div class="booking-id">
+                        <span class="label">Booking ID:</span>
+                        <span class="value" id="bookingId">BK1234567890</span>
+                        <button class="copy-btn" onclick="copyBookingId()">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <div>
+                                <span class="label">Date & Time</span>
+                                <span class="value" id="bookingDateTime">January 15, 2024 at 10:00 AM</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <span class="label">Service</span>
+                                <span class="value" id="bookingService">Plumbing - Pipe Repair</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <span class="label">Professional</span>
+                                <span class="value" id="bookingProfessional">Suresh Kumar</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="label">Address</span>
+                                <span class="value" id="bookingAddress">123 Main Street, Kochi, Kerala</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-rupee-sign"></i>
+                            <div>
+                                <span class="label">Estimated Cost</span>
+                                <span class="value" id="bookingCost">₹300 - ₹500</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-credit-card"></i>
+                            <div>
+                                <span class="label">Payment Method</span>
+                                <span class="value" id="bookingPayment">Cash After Service</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Contact -->
+                <div class="professional-contact-card">
+                    <h3>Professional Contact</h3>
+                    <div class="professional-info">
+                        <div class="professional-avatar">S</div>
+                        <div class="professional-details">
+                            <h4>Suresh Kumar</h4>
+                            <div class="rating">
+                                <span class="stars">★★★★★</span>
+                                <span>4.8 (156 reviews)</span>
+                            </div>
+                            <p>8 years experience • KYC Verified</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-actions">
+                        <button class="btn-outline" onclick="callProfessional()">
+                            <i class="fas fa-phone"></i> Call
+                        </button>
+                        <button class="btn-outline" onclick="chatProfessional()">
+                            <i class="fas fa-comment"></i> Chat
+                        </button>
+                    </div>
+                    
+                    <div class="contact-note">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Contact details will be shared 1 hour before the appointment for privacy</span>
+                    </div>
+                </div>
+
+                <!-- Live Tracking -->
+                <div class="tracking-card">
+                    <h3>Live Tracking</h3>
+                    <div class="tracking-status">
+                        <div class="status-item active">
+                            <div class="status-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Booking Confirmed</h4>
+                                <p>Your booking has been confirmed</p>
+                                <span class="timestamp">Just now</span>
+                            </div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Professional Assigned</h4>
+                                <p>Suresh Kumar has been assigned to your service</p>
+                                <span class="timestamp">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>On the Way</h4>
+                                <p>Professional is heading to your location</p>
+                                <span class="timestamp">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Service Started</h4>
+                                <p>Work has begun at your location</p>
+                                <span class="timestamp">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <span>Live location tracking will be available on service day</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions-card">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="rescheduleBooking()">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Reschedule</span>
+                        </button>
+                        <button class="action-btn" onclick="cancelBooking()">
+                            <i class="fas fa-times"></i>
+                            <span>Cancel</span>
+                        </button>
+                        <button class="action-btn" onclick="addToCalendar()">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Add to Calendar</span>
+                        </button>
+                        <button class="action-btn" onclick="shareBooking()">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Important Information -->
+                <div class="info-card">
+                    <h3>Important Information</h3>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>The professional will arrive within the scheduled time slot</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-id-card"></i>
+                            <span>Please verify the professional's ID before allowing entry</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>All professionals are background verified and insured</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>Contact support at +91 9876543210 for any assistance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Actions -->
+                <div class="navigation-actions">
+                    <button class="btn-outline" onclick="window.location.href='dashboard.html'">
+                        <i class="fas fa-home"></i> Go to Dashboard
+                    </button>
+                    <button class="btn-primary" onclick="window.location.href='bookings.html'">
+                        <i class="fas fa-list"></i> View All Bookings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize confirmation page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBookingDetails();
+        });
+        
+        function loadBookingDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('id');
+            
+            if (bookingId) {
+                document.getElementById('bookingId').textContent = bookingId;
+                
+                // Load booking details from localStorage
+                const bookings = JSON.parse(localStorage.getItem('userBookings')) || [];
+                const booking = bookings.find(b => b.id === bookingId);
+                
+                if (booking) {
+                    document.getElementById('bookingDateTime').textContent = 
+                        `January ${booking.date}, 2024 at ${booking.time}`;
+                    document.getElementById('bookingService').textContent = booking.service;
+                    document.getElementById('bookingProfessional').textContent = booking.professional;
+                    document.getElementById('bookingAddress').textContent = booking.address || '123 Main Street, Kochi, Kerala';
+                    document.getElementById('bookingPayment').textContent = 
+                        booking.paymentMethod === 'cash' ? 'Cash After Service' : 
+                        booking.paymentMethod === 'upi' ? 'UPI Payment' :
+                        booking.paymentMethod === 'card' ? 'Credit/Debit Card' : 'Digital Wallet';
+                }
+            }
+        }
+        
+        function copyBookingId() {
+            const bookingId = document.getElementById('bookingId').textContent;
+            navigator.clipboard.writeText(bookingId).then(() => {
+                showNotification('Booking ID copied to clipboard');
+            });
+        }
+        
+        function callProfessional() {
+            showNotification('Contact details will be shared 1 hour before appointment');
+        }
+        
+        function chatProfessional() {
+            showNotification('Chat will be available closer to appointment time');
+        }
+        
+        function rescheduleBooking() {
+            if (confirm('Are you sure you want to reschedule this booking?')) {
+                showNotification('Reschedule request sent. You will be contacted shortly.');
+            }
+        }
+        
+        function cancelBooking() {
+            if (confirm('Are you sure you want to cancel this booking? Cancellation charges may apply.')) {
+                showNotification('Booking cancelled successfully');
+                setTimeout(() => {
+                    window.location.href = 'bookings.html';
+                }, 2000);
+            }
+        }
+        
+        function addToCalendar() {
+            const bookingDateTime = document.getElementById('bookingDateTime').textContent;
+            const service = document.getElementById('bookingService').textContent;
+            
+            // Create calendar event URL (Google Calendar)
+            const startDate = new Date('2024-01-15T10:00:00').toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            const endDate = new Date('2024-01-15T12:00:00').toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(service + ' - HereForYou')}&dates=${startDate}/${endDate}&details=${encodeURIComponent('Service booking with HereForYou')}`;
+            
+            window.open(calendarUrl, '_blank');
+        }
+        
+        function shareBooking() {
+            const bookingId = document.getElementById('bookingId').textContent;
+            const shareText = `My service booking ${bookingId} with HereForYou is confirmed!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'HereForYou Booking',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(shareText + ' ' + window.location.href);
+                showNotification('Booking details copied to clipboard');
+            }
+        }
+        
+        // Simulate status updates
+        setTimeout(() => {
+            const statusItems = document.querySelectorAll('.status-item');
+            if (statusItems.length > 1) {
+                statusItems[1].classList.add('active');
+                statusItems[1].querySelector('.timestamp').textContent = '2 minutes ago';
+                showNotification('Professional has been assigned to your booking');
+            }
+        }, 5000);
+        
+        // Enhanced styles for confirmation page
+        const style = document.createElement('style');
+        style.textContent = `
+            .confirmation-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem 20px;
+            }
+            
+            .confirmation-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .success-icon {
+                width: 80px;
+                height: 80px;
+                background: var(--success-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1rem;
+                animation: successPulse 2s ease-in-out;
+            }
+            
+            .success-icon i {
+                font-size: 2.5rem;
+                color: var(--white);
+            }
+            
+            @keyframes successPulse {
+                0% { transform: scale(0.8); opacity: 0; }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); opacity: 1; }
+            }
+            
+            .confirmation-header h1 {
+                color: var(--success-color);
+                margin-bottom: 0.5rem;
+                font-size: 2.5rem;
+            }
+            
+            .confirmation-header p {
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+            }
+            
+            .confirmation-details {
+                display: grid;
+                gap: 2rem;
+            }
+            
+            .booking-info-card, .professional-contact-card, .tracking-card, 
+            .quick-actions-card, .info-card {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 2rem;
+            }
+            
+            .booking-info-card h3, .professional-contact-card h3, 
+            .tracking-card h3, .quick-actions-card h3, .info-card h3 {
+                color: var(--text-primary);
+                margin-bottom: 1.5rem;
+                font-size: 1.3rem;
+            }
+            
+            .booking-id {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 2rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .booking-id .label {
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+            
+            .booking-id .value {
+                font-family: monospace;
+                font-weight: bold;
+                color: var(--primary-color);
+                font-size: 1.1rem;
+            }
+            
+            .copy-btn {
+                background: var(--primary-color);
+                color: var(--white);
+                border: none;
+                padding: 0.5rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            
+            .copy-btn:hover {
+                background: #8FBF8F;
+            }
+            
+            .detail-grid {
+                display: grid;
+                gap: 1.5rem;
+            }
+            
+            .detail-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .detail-item i {
+                color: var(--primary-color);
+                font-size: 1.2rem;
+                margin-top: 0.2rem;
+            }
+            
+            .detail-item .label {
+                display: block;
+                font-weight: 600;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .detail-item .value {
+                color: var(--text-primary);
+                font-weight: 500;
+            }
+            
+            .professional-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .professional-details h4 {
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .professional-details .rating {
+                margin-bottom: 0.5rem;
+            }
+            
+            .professional-details p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .contact-actions {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .contact-note {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+            }
+            
+            .contact-note i {
+                color: var(--secondary-color);
+            }
+            
+            .tracking-status {
+                margin-bottom: 2rem;
+            }
+            
+            .status-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                position: relative;
+            }
+            
+            .status-item:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                left: 20px;
+                top: 40px;
+                width: 2px;
+                height: 30px;
+                background: var(--border-color);
+            }
+            
+            .status-item.active::after {
+                background: var(--primary-color);
+            }
+            
+            .status-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--border-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+                transition: var(--transition);
+            }
+            
+            .status-item.active .status-icon {
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            .status-info h4 {
+                margin-bottom: 0.25rem;
+                color: var(--text-primary);
+            }
+            
+            .status-info p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .timestamp {
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+                font-style: italic;
+            }
+            
+            .status-item.active .timestamp {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            .map-placeholder {
+                background: var(--background-color);
+                border: 2px dashed var(--border-color);
+                border-radius: 8px;
+                padding: 3rem;
+                text-align: center;
+                color: var(--text-secondary);
+            }
+            
+            .map-placeholder i {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                display: block;
+            }
+            
+            .action-buttons {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .action-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border: 2px solid var(--border-color);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+                text-decoration: none;
+                color: var(--text-primary);
+            }
+            
+            .action-btn:hover {
+                border-color: var(--primary-color);
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            .action-btn i {
+                font-size: 1.5rem;
+            }
+            
+            .action-btn span {
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            
+            .info-list {
+                display: grid;
+                gap: 1rem;
+            }
+            
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .info-item i {
+                color: var(--secondary-color);
+                font-size: 1.2rem;
+            }
+            
+            .navigation-actions {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+            
+            @media (max-width: 768px) {
+                .confirmation-container {
+                    padding: 1rem;
+                }
+                
+                .confirmation-header h1 {
+                    font-size: 2rem;
+                }
+                
+                .booking-id {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 0.5rem;
+                }
+                
+                .contact-actions {
+                    flex-direction: column;
+                }
+                
+                .action-buttons {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .navigation-actions {
+                    flex-direction: column;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

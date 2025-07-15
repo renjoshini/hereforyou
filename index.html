@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HereForYou - Trusted Help at Your Doorstep</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-brand">
+          <i class="fas fa-home"></i>
+          <span>HereForYou</span>
+        </div>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Services</a>
+          <a href="#" class="nav-link">About</a>
+          <a href="#" class="nav-link">Contact</a>
+          <button
+            class="btn-secondary"
+            onclick="window.location.href='login.html'"
+          >
+            Login
+          </button>
+          <button
+            class="btn-primary"
+            onclick="window.location.href='signup.html'"
+          >
+            Sign Up
+          </button>
+        </div>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Trusted Help at Your Doorstep</h1>
+          <p>
+            Connect with verified professionals in Kerala for all your home
+            service needs
+          </p>
+
+          <div class="search-container">
+            <div class="search-box">
+              <input
+                type="text"
+                placeholder="Search for services..."
+                id="serviceSearch"
+              />
+              <input
+                type="text"
+                placeholder="Location"
+                id="locationSearch"
+                value="Kochi"
+              />
+              <button class="search-btn" onclick="searchServices()">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="services-section">
+        <div class="container">
+          <h2>Our Services</h2>
+          <div class="services-grid" id="servicesGrid">
+            <!-- Services will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="features-section">
+        <div class="container">
+          <h2>Why Choose HereForYou?</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Verified Professionals</h3>
+              <p>
+                All service providers are KYC verified and background checked
+              </p>
+            </div>
+            <div class="feature-card">
+              <i class="fas fa-clock"></i>
+              <h3>Quick Response</h3>
+              <p>Get help within minutes with our fast booking system</p>
+            </div>
+            <div class="feature-card">
+              <i class="fas fa-star"></i>
+              <h3>Quality Assured</h3>
+              <p>Rated professionals with genuine customer reviews</p>
+            </div>
+            <div class="feature-card">
+              <i class="fas fa-headset"></i>
+              <h3>24/7 Support</h3>
+              <p>Round-the-clock customer support for your queries</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>HereForYou</h3>
+            <p>Connecting Kerala with trusted home service professionals</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="become-helper.html">Become a Helper</a></li>
+              <li><a href="support.html">Support</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-phone"></i> +91 9876543210</p>
+            <p><i class="fas fa-envelope"></i> support@hereforyou.in</p>
+            <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HereForYou. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

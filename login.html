@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - HereForYou</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <i class="fas fa-home"></i>
+        <span>HereForYou</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="signup.html" class="nav-link">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 2rem;">
+      <div class="form-container">
+        <h2 class="text-center mb-3">Welcome Back</h2>
+        <p class="text-center mb-3">Sign in to access trusted help at your doorstep</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email or Phone Number</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              required
+              placeholder="Enter your email or phone number"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn-primary" style="width: 100%;">
+              Sign In
+            </button>
+          </div>
+
+          <div class="text-center">
+            <a href="#" onclick="forgotPassword()" class="nav-link">Forgot Password?</a>
+          </div>
+
+          <div class="text-center mt-3">
+            <p>
+              Don't have an account?
+              <a href="signup.html" class="nav-link">Sign up here</a>
+            </p>
+          </div>
+        </form>
+
+        <div
+          class="divider mt-3 mb-3"
+          style="text-align: center; color: var(--text-secondary);"
+        >
+          or
+        </div>
+
+        <div class="social-login">
+          <button
+            class="btn-outline"
+            style="width: 100%; margin-bottom: 1rem;"
+            onclick="loginWithGoogle()"
+          >
+            <i class="fab fa-google"></i> Continue with Google
+          </button>
+          <button class="btn-outline" style="width: 100%;" onclick="loginWithPhone()">
+            <i class="fas fa-phone"></i> Login with OTP
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>HereForYou</h3>
+          <p>Connecting Kerala with trusted home service professionals</p>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="support.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 HereForYou. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function forgotPassword() {
+      showNotification("Password reset link sent to your email/phone");
+    }
+
+    function loginWithGoogle() {
+      showNotification("Google login will be available soon");
+    }
+
+    function loginWithPhone() {
+      showNotification("OTP login will be available soon");
+    }
+
+    // Save login data and redirect to profile page
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // prevent form submit refresh
+
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const userData = {
+        name: "Renjini Xavier", // Replace with dynamic name if available
+        email: email,
+        phone: Phone,
+        membership: "", // <-- EMPTY to NOT show membership on profile
+        profilePicUrl: "https://cdn-icons-png.flaticon.com/512/847/847969.png", // use blank for now
+      };
+
+      // Save user info
+      localStorage.setItem("hereForYouUser", JSON.stringify(userData));
+
+      // Go to profile page
+      window.location.href = "profile.html";
+    });
+  </script>
+</body>
+</html>

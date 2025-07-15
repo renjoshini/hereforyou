@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="support.html" class="nav-link">Support</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- FAQ Hero -->
+        <section class="faq-hero">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about HereForYou services</p>
+                
+                <div class="faq-search">
+                    <input type="text" id="faqSearch" placeholder="Search for questions..." 
+                           onkeyup="searchFAQs()">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Categories -->
+        <section class="faq-categories">
+            <div class="container">
+                <h2>Browse by Category</h2>
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="showCategory('all')">All Questions</button>
+                    <button class="category-tab" onclick="showCategory('booking')">Booking</button>
+                    <button class="category-tab" onclick="showCategory('payment')">Payment</button>
+                    <button class="category-tab" onclick="showCategory('service')">Service</button>
+                    <button class="category-tab" onclick="showCategory('account')">Account</button>
+                    <button class="category-tab" onclick="showCategory('safety')">Safety</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Content -->
+        <section class="faq-content">
+            <div class="container">
+                <div class="faq-list" id="faqList">
+                    <!-- Booking FAQs -->
+                    <div class="faq-item" data-category="booking">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do I book a service on HereForYou?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Booking a service is simple:</p>
+                            <ol>
+                                <li>Search for the service you need on our homepage</li>
+                                <li>Browse through verified professionals in your area</li>
+                                <li>Select a professional and view their profile</li>
+                                <li>Choose a convenient date and time slot</li>
+                                <li>Enter your address and service details</li>
+                                <li>Confirm your booking and payment method</li>
+                            </ol>
+                            <p>You'll receive a booking confirmation with all details.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="booking">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Can I cancel or reschedule my booking?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can cancel or reschedule your booking:</p>
+                            <ul>
+                                <li><strong>Free cancellation:</strong> Up to 2 hours before the scheduled time</li>
+                                <li><strong>Rescheduling:</strong> Available up to 1 hour before the service</li>
+                                <li><strong>Late cancellation:</strong> May incur charges as per our policy</li>
+                            </ul>
+                            <p>You can manage your bookings from the "My Bookings" section in your dashboard.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="booking">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How far in advance can I book a service?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can book services up to 30 days in advance. Same-day bookings are also available based on professional availability. For emergency services, we offer immediate booking with priority professionals.</p>
+                        </div>
+                    </div>
+
+                    <!-- Payment FAQs -->
+                    <div class="faq-item" data-category="payment">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What payment methods do you accept?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept multiple payment methods for your convenience:</p>
+                            <ul>
+                                <li><strong>Digital Payments:</strong> UPI (GPay, PhonePe, Paytm), Credit/Debit Cards, Digital Wallets</li>
+                                <li><strong>Cash:</strong> Pay after service completion</li>
+                                <li><strong>Net Banking:</strong> All major banks supported</li>
+                            </ul>
+                            <p>All digital payments are processed securely with bank-level encryption.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payment">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>When do I need to pay for the service?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Payment timing depends on your chosen method:</p>
+                            <ul>
+                                <li><strong>Cash After Service:</strong> Pay the professional directly after work completion</li>
+                                <li><strong>Digital Payment:</strong> Payment is processed after service completion and your approval</li>
+                                <li><strong>Advance Booking:</strong> A small booking fee may be charged to confirm your slot</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payment">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do refunds work?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our refund policy ensures customer satisfaction:</p>
+                            <ul>
+                                <li><strong>Service Issues:</strong> Full refund if service quality doesn't meet standards</li>
+                                <li><strong>Cancellations:</strong> Refunds based on cancellation timing and policy</li>
+                                <li><strong>Processing Time:</strong> 3-7 business days for digital payments</li>
+                                <li><strong>Cash Payments:</strong> Refunded via bank transfer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Service FAQs -->
+                    <div class="faq-item" data-category="service">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Are all professionals on HereForYou verified?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, every professional goes through our comprehensive verification process:</p>
+                            <ul>
+                                <li><strong>Identity Verification:</strong> Aadhar and PAN card verification</li>
+                                <li><strong>Background Check:</strong> Police verification and reference checks</li>
+                                <li><strong>Skill Assessment:</strong> Practical tests and certifications</li>
+                                <li><strong>Training:</strong> Customer service and safety training</li>
+                                <li><strong>Insurance:</strong> All professionals are covered under our insurance policy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="service">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What if I'm not satisfied with the service?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Customer satisfaction is our priority. If you're not satisfied:</p>
+                            <ol>
+                                <li>Contact our support team immediately</li>
+                                <li>We'll investigate the issue within 24 hours</li>
+                                <li>Options include service redo, partial/full refund, or credit</li>
+                                <li>Serious issues result in professional review and training</li>
+                                <li>You can also rate and review to help other customers</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="service">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do you ensure service quality?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain high quality through:</p>
+                            <ul>
+                                <li><strong>Regular Training:</strong> Ongoing skill development programs</li>
+                                <li><strong>Customer Feedback:</strong> Rating and review system</li>
+                                <li><strong>Quality Audits:</strong> Random quality checks</li>
+                                <li><strong>Professional Standards:</strong> Strict guidelines and code of conduct</li>
+                                <li><strong>Continuous Monitoring:</strong> Performance tracking and improvement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Account FAQs -->
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do I create an account on HereForYou?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Creating an account is quick and easy:</p>
+                            <ol>
+                                <li>Click "Sign Up" on our homepage</li>
+                                <li>Enter your name, email, and phone number</li>
+                                <li>Verify your phone number with OTP</li>
+                                <li>Create a secure password</li>
+                                <li>Complete your profile with address details</li>
+                            </ol>
+                            <p>You can also sign up using Google or Facebook for faster registration.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Can I have multiple addresses in my account?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can save multiple addresses for convenience:</p>
+                            <ul>
+                                <li>Home, office, and other locations</li>
+                                <li>Quick selection during booking</li>
+                                <li>Address-specific service preferences</li>
+                                <li>Easy management from your profile settings</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Safety FAQs -->
+                    <div class="faq-item" data-category="safety">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do you ensure my safety during service visits?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Your safety is our top priority:</p>
+                            <ul>
+                                <li><strong>Professional Verification:</strong> Complete background verification</li>
+                                <li><strong>Real-time Tracking:</strong> Live location sharing during service</li>
+                                <li><strong>Emergency Support:</strong> 24/7 emergency helpline</li>
+                                <li><strong>Insurance Coverage:</strong> Comprehensive insurance for all services</li>
+                                <li><strong>Contact Masking:</strong> Privacy protection through masked communication</li>
+                                <li><strong>Rating System:</strong> Community-driven safety through reviews</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="safety">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What should I do in case of an emergency during service?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>In case of any emergency:</p>
+                            <ol>
+                                <li><strong>Immediate Help:</strong> Call our emergency number +91 9876543211</li>
+                                <li><strong>App Emergency:</strong> Use the emergency button in the app</li>
+                                <li><strong>Local Authorities:</strong> Call 100 for police or 108 for medical emergency</li>
+                                <li><strong>Report Incident:</strong> Report to our support team for investigation</li>
+                            </ol>
+                            <p>Our team is available 24/7 to assist you.</p>
+                        </div>
+                    </div>
+
+                    <!-- General FAQs -->
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>In which cities is HereForYou available?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>HereForYou is currently available across Kerala:</p>
+                            <ul>
+                                <li><strong>Major Cities:</strong> Kochi, Thiruvananthapuram, Thrissur, Kozhikode</li>
+                                <li><strong>Other Cities:</strong> Kollam, Alappuzha, Palakkad, Malappuram, Kannur, Kottayam</li>
+                                <li><strong>Expanding:</strong> We're constantly expanding to new areas</li>
+                            </ul>
+                            <p>Can't find your city? Contact us - we might be launching there soon!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How can I become a service professional on HereForYou?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Join our network of professionals:</p>
+                            <ol>
+                                <li>Visit our "Become a Helper" page</li>
+                                <li>Fill out the registration form with your details</li>
+                                <li>Upload required documents for verification</li>
+                                <li>Complete skill assessment and training</li>
+                                <li>Start receiving bookings and earning money</li>
+                            </ol>
+                            <p>Our professionals earn an average of ₹25,000-50,000 per month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Still Have Questions -->
+                <div class="still-questions">
+                    <h2>Still have questions?</h2>
+                    <p>Can't find what you're looking for? Our support team is here to help.</p>
+                    <div class="help-options">
+                        <a href="support.html" class="btn-primary">
+                            <i class="fas fa-headset"></i> Contact Support
+                        </a>
+                        <a href="contact.html" class="btn-outline">
+                            <i class="fas fa-envelope"></i> Send Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> hello@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleFAQ(question) {
+            const faqItem = question.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = question.querySelector('i');
+            
+            // Close other open FAQs
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+            
+            if (faqItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        function showCategory(category) {
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide FAQs based on category
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+                
+                // Close any open FAQ when switching categories
+                item.classList.remove('active');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-question i');
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            });
+        }
+        
+        function searchFAQs() {
+            const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    
+                    // Highlight search term in question
+                    if (searchTerm && question.includes(searchTerm)) {
+                        item.style.backgroundColor = 'rgba(168, 213, 168, 0.1)';
+                    } else {
+                        item.style.backgroundColor = '';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // Enhanced styles for FAQ page
+        const style = document.createElement('style');
+        style.textContent = `
+            .faq-hero {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+                color: var(--white);
+                padding: 4rem 0;
+                text-align: center;
+            }
+            
+            .faq-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+            
+            .faq-hero p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+            
+            .faq-search {
+                position: relative;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .faq-search input {
+                width: 100%;
+                padding: 1rem 3rem 1rem 1rem;
+                border: none;
+                border-radius: var(--border-radius);
+                font-size: 1rem;
+                outline: none;
+            }
+            
+            .faq-search i {
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-secondary);
+            }
+            
+            .faq-categories {
+                padding: 2rem 0;
+                background: var(--white);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .faq-categories h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+            }
+            
+            .category-tabs {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .category-tab {
+                padding: 0.75rem 1.5rem;
+                border: 2px solid var(--border-color);
+                background: var(--white);
+                border-radius: 25px;
+                cursor: pointer;
+                transition: var(--transition);
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+            
+            .category-tab.active {
+                background: var(--primary-color);
+                color: var(--white);
+                border-color: var(--primary-color);
+            }
+            
+            .category-tab:hover:not(.active) {
+                border-color: var(--primary-color);
+                color: var(--primary-color);
+            }
+            
+            .faq-content {
+                padding: 4rem 0;
+                background: var(--background-color);
+            }
+            
+            .faq-list {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .faq-item {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                margin-bottom: 1rem;
+                box-shadow: var(--shadow);
+                overflow: hidden;
+                transition: var(--transition);
+            }
+            
+            .faq-item:hover {
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .faq-question {
+                padding: 1.5rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: var(--transition);
+            }
+            
+            .faq-question:hover {
+                background: var(--background-color);
+            }
+            
+            .faq-question h3 {
+                color: var(--text-primary);
+                margin: 0;
+                font-size: 1.1rem;
+            }
+            
+            .faq-question i {
+                color: var(--primary-color);
+                transition: transform 0.3s ease;
+                font-size: 1.2rem;
+            }
+            
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                background: var(--background-color);
+            }
+            
+            .faq-answer > * {
+                padding: 1.5rem;
+                margin: 0;
+            }
+            
+            .faq-answer p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+            
+            .faq-answer ol, .faq-answer ul {
+                color: var(--text-secondary);
+                padding-left: 2rem;
+            }
+            
+            .faq-answer li {
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+            
+            .faq-answer strong {
+                color: var(--text-primary);
+            }
+            
+            .still-questions {
+                text-align: center;
+                margin-top: 4rem;
+                padding: 3rem 2rem;
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+            
+            .still-questions h2 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                font-size: 2rem;
+            }
+            
+            .still-questions p {
+                color: var(--text-secondary);
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .help-options {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            @media (max-width: 768px) {
+                .faq-hero h1 {
+                    font-size: 2rem;
+                }
+                
+                .category-tabs {
+                    justify-content: flex-start;
+                    overflow-x: auto;
+                    padding-bottom: 0.5rem;
+                }
+                
+                .category-tab {
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+                
+                .faq-question {
+                    padding: 1rem;
+                }
+                
+                .faq-question h3 {
+                    font-size: 1rem;
+                    margin-right: 1rem;
+                }
+                
+                .faq-answer > * {
+                    padding: 1rem;
+                }
+                
+                .help-options {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .still-questions {
+                    padding: 2rem 1rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

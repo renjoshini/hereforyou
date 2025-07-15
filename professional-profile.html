@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <button class="btn-secondary" onclick="window.history.back()">Back</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <div id="professionalProfile" class="professional-profile-container">
+                <!-- Profile will be populated by JavaScript -->
+            </div>
+            
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <h3>Customer Reviews</h3>
+                <div class="reviews-summary">
+                    <div class="overall-rating">
+                        <div class="rating-number">4.8</div>
+                        <div class="rating-stars">
+                            <div class="stars">★★★★★</div>
+                            <div class="rating-text">Based on 156 reviews</div>
+                        </div>
+                    </div>
+                    <div class="rating-breakdown">
+                        <div class="rating-bar">
+                            <span>5 stars</span>
+                            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+                            <span>124</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>4 stars</span>
+                            <div class="bar"><div class="fill" style="width: 15%"></div></div>
+                            <span>23</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>3 stars</span>
+                            <div class="bar"><div class="fill" style="width: 3%"></div></div>
+                            <span>6</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>2 stars</span>
+                            <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                            <span>2</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>1 star</span>
+                            <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                            <span>1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reviews-list">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">R</div>
+                            <div class="reviewer-info">
+                                <h4>Rajesh Kumar</h4>
+                                <div class="review-rating">★★★★★</div>
+                                <span class="review-date">2 days ago</span>
+                            </div>
+                        </div>
+                        <p class="review-text">Excellent plumbing work! Suresh arrived on time and fixed the pipe leak quickly. Very professional and cleaned up after the work. Highly recommended!</p>
+                        <div class="review-images">
+                            <span class="image-placeholder">📷 Work completed photos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">P</div>
+                            <div class="reviewer-info">
+                                <h4>Priya Nair</h4>
+                                <div class="review-rating">★★★★☆</div>
+                                <span class="review-date">1 week ago</span>
+                            </div>
+                        </div>
+                        <p class="review-text">Good service for bathroom fitting installation. Work quality was good, though took a bit longer than expected. Overall satisfied with the service.</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">A</div>
+                            <div class="reviewer-info">
+                                <h4>Anand Menon</h4>
+                                <div class="review-rating">★★★★★</div>
+                                <span class="review-date">2 weeks ago</span>
+                            </div>
+                        </div>
+                        <p class="review-text">Very knowledgeable and experienced. Fixed a complex water heater issue that others couldn't solve. Fair pricing and excellent customer service.</p>
+                    </div>
+                </div>
+                
+                <button class="btn-outline" onclick="showAllReviews()">View All Reviews</button>
+            </div>
+            
+            <!-- Similar Professionals -->
+            <div class="similar-professionals">
+                <h3>Other Professionals in Your Area</h3>
+                <div class="similar-professionals-grid">
+                    <div class="professional-card">
+                        <div class="professional-header">
+                            <div class="professional-avatar">A</div>
+                            <div class="professional-info">
+                                <h4>Anil Nair</h4>
+                                <p>Plumbing</p>
+                                <div class="rating">
+                                    <div class="stars">★★★★☆</div>
+                                    <span>4.6 (89)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="professional-price">₹250/hour</div>
+                        <button class="btn-outline btn-small" onclick="viewOtherProfile('p2')">View Profile</button>
+                    </div>
+                    
+                    <div class="professional-card">
+                        <div class="professional-header">
+                            <div class="professional-avatar">V</div>
+                            <div class="professional-info">
+                                <h4>Vinod Thomas</h4>
+                                <p>Plumbing</p>
+                                <div class="rating">
+                                    <div class="stars">★★★★★</div>
+                                    <span>4.9 (67)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="professional-price">₹350/hour</div>
+                        <button class="btn-outline btn-small" onclick="viewOtherProfile('p3')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function showAllReviews() {
+            showNotification('All reviews feature coming soon');
+        }
+        
+        function viewOtherProfile(professionalId) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('service');
+            window.location.href = `professional-profile.html?id=${professionalId}&service=${serviceId}`;
+        }
+        
+        // Enhanced professional profile rendering
+        function renderProfessionalProfile(prof) {
+            const profileContainer = document.getElementById('professionalProfile');
+            if (!profileContainer) return;
+            
+            profileContainer.innerHTML = `
+                <div class="profile-header-section">
+                    <div class="profile-hero">
+                        <div class="professional-avatar large">
+                            ${getInitials(prof.name)}
+                        </div>
+                        <div class="professional-main-info">
+                            <h1>${prof.name}</h1>
+                            <p class="professional-location">
+                                <i class="fas fa-map-marker-alt"></i> ${prof.location}
+                            </p>
+                            <div class="professional-badges">
+                                ${prof.verified ? '<span class="verified-badge"><i class="fas fa-check-circle"></i> KYC Verified</span>' : ''}
+                                <span class="experience-badge"><i class="fas fa-clock"></i> ${prof.experience}</span>
+                                <span class="available-badge"><i class="fas fa-circle"></i> Available Today</span>
+                            </div>
+                            <div class="rating-display">
+                                <div class="stars large">
+                                    ${'★'.repeat(Math.floor(prof.rating))}${'☆'.repeat(5 - Math.floor(prof.rating))}
+                                </div>
+                                <span class="rating-text">${prof.rating} (${prof.reviews} reviews)</span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <div class="price-display">
+                                <span class="price-label">Starting from</span>
+                                <span class="price-amount">${prof.hourlyRate}</span>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn-outline" onclick="contactProfessional()">
+                                    <i class="fas fa-phone"></i> Call
+                                </button>
+                                <button class="btn-outline" onclick="chatWithProfessional()">
+                                    <i class="fas fa-comment"></i> Chat
+                                </button>
+                                <button class="btn-primary large" onclick="bookProfessional()">
+                                    <i class="fas fa-calendar"></i> Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-content-section">
+                    <div class="profile-tabs">
+                        <button class="tab-button active" onclick="showTab('about')">About</button>
+                        <button class="tab-button" onclick="showTab('services')">Services</button>
+                        <button class="tab-button" onclick="showTab('gallery')">Gallery</button>
+                        <button class="tab-button" onclick="showTab('availability')">Availability</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="about-tab">
+                        <div class="about-section">
+                            <h3>About ${prof.name}</h3>
+                            <p>Experienced professional with ${prof.experience} in the field. Specializes in quality work with customer satisfaction guarantee. Licensed and insured for your peace of mind.</p>
+                            
+                            <div class="specialties-detailed">
+                                <h4>Specialties & Services</h4>
+                                <div class="specialties-grid">
+                                    ${prof.specialties.map(specialty => `
+                                        <div class="specialty-item">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>${specialty}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="certifications">
+                                <h4>Certifications & Qualifications</h4>
+                                <div class="cert-list">
+                                    <div class="cert-item">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>Licensed Plumber (Kerala Board)</span>
+                                    </div>
+                                    <div class="cert-item">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>Safety Training Certified</span>
+                                    </div>
+                                    <div class="cert-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Insured Professional</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="services-tab">
+                        <div class="services-pricing">
+                            <h3>Services & Pricing</h3>
+                            <div class="service-items">
+                                <div class="service-item">
+                                    <div class="service-info">
+                                        <h4>Basic Pipe Repair</h4>
+                                        <p>Fix leaks, joint repairs, minor pipe replacements</p>
+                                    </div>
+                                    <div class="service-price">₹300 - ₹500</div>
+                                </div>
+                                <div class="service-item">
+                                    <div class="service-info">
+                                        <h4>Bathroom Fittings</h4>
+                                        <p>Tap installation, shower fittings, toilet repairs</p>
+                                    </div>
+                                    <div class="service-price">₹500 - ₹1200</div>
+                                </div>
+                                <div class="service-item">
+                                    <div class="service-info">
+                                        <h4>Water Heater Service</h4>
+                                        <p>Installation, repair, maintenance of water heaters</p>
+                                    </div>
+                                    <div class="service-price">₹400 - ₹800</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gallery-tab">
+                        <div class="work-gallery">
+                            <h3>Work Gallery</h3>
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <i class="fas fa-image"></i>
+                                        <span>Bathroom renovation project</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <i class="fas fa-image"></i>
+                                        <span>Kitchen plumbing work</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-placeholder">
+                                        <i class="fas fa-image"></i>
+                                        <span>Water heater installation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="availability-tab">
+                        <div class="availability-calendar">
+                            <h3>Check Availability</h3>
+                            <div class="calendar-widget">
+                                <div class="calendar-header">
+                                    <button onclick="previousMonth()">&lt;</button>
+                                    <h4>January 2024</h4>
+                                    <button onclick="nextMonth()">&gt;</button>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day-header">Sun</div>
+                                    <div class="calendar-day-header">Mon</div>
+                                    <div class="calendar-day-header">Tue</div>
+                                    <div class="calendar-day-header">Wed</div>
+                                    <div class="calendar-day-header">Thu</div>
+                                    <div class="calendar-day-header">Fri</div>
+                                    <div class="calendar-day-header">Sat</div>
+                                    ${generateCalendarDays()}
+                                </div>
+                                <div class="availability-legend">
+                                    <div class="legend-item">
+                                        <div class="legend-color available"></div>
+                                        <span>Available</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color busy"></div>
+                                        <span>Busy</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color booked"></div>
+                                        <span>Booked</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function generateCalendarDays() {
+            const days = [];
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for previous month
+            for (let i = 0; i < firstDay; i++) {
+                days.push('<div class="calendar-day empty"></div>');
+            }
+            
+            // Add days of current month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const status = Math.random() > 0.3 ? 'available' : (Math.random() > 0.5 ? 'busy' : 'booked');
+                const isToday = day === today.getDate() ? 'today' : '';
+                days.push(`<div class="calendar-day ${status} ${isToday}" onclick="selectCalendarDay(${day})">${day}</div>`);
+            }
+            
+            return days.join('');
+        }
+        
+        function selectCalendarDay(day) {
+            showNotification(`Selected January ${day}, 2024. Click Book Now to continue.`);
+        }
+        
+        function previousMonth() {
+            showNotification('Previous month navigation coming soon');
+        }
+        
+        function nextMonth() {
+            showNotification('Next month navigation coming soon');
+        }
+        
+        // Enhanced styles for professional profile
+        const style = document.createElement('style');
+        style.textContent = `
+            .professional-profile-container {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-bottom: 2rem;
+                overflow: hidden;
+            }
+            
+            .profile-hero {
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: var(--white);
+                padding: 2rem;
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                gap: 2rem;
+                align-items: center;
+            }
+            
+            .professional-avatar.large {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+            
+            .professional-main-info h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .professional-location {
+                opacity: 0.9;
+                margin-bottom: 1rem;
+            }
+            
+            .professional-badges {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .professional-badges span {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+            }
+            
+            .available-badge i {
+                color: var(--success-color);
+            }
+            
+            .rating-display {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .stars.large {
+                font-size: 1.5rem;
+            }
+            
+            .price-display {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .price-label {
+                display: block;
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+            
+            .price-amount {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            
+            .action-buttons {
+                display: grid;
+                gap: 0.5rem;
+            }
+            
+            .btn-primary.large {
+                padding: 1rem;
+                font-size: 1.1rem;
+                font-weight: bold;
+            }
+            
+            .profile-tabs {
+                display: flex;
+                background: var(--background-color);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .tab-button {
+                flex: 1;
+                padding: 1rem;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                transition: var(--transition);
+                font-weight: 600;
+            }
+            
+            .tab-button.active {
+                background: var(--white);
+                color: var(--primary-color);
+                border-bottom: 3px solid var(--primary-color);
+            }
+            
+            .tab-content {
+                display: none;
+                padding: 2rem;
+            }
+            
+            .tab-content.active {
+                display: block;
+            }
+            
+            .specialties-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .specialty-item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .specialty-item i {
+                color: var(--success-color);
+            }
+            
+            .cert-list {
+                margin-top: 1rem;
+            }
+            
+            .cert-item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .cert-item:last-child {
+                border-bottom: none;
+            }
+            
+            .cert-item i {
+                color: var(--warning-color);
+            }
+            
+            .service-items {
+                margin-top: 1rem;
+            }
+            
+            .service-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                margin-bottom: 1rem;
+            }
+            
+            .service-item h4 {
+                margin-bottom: 0.25rem;
+                color: var(--text-primary);
+            }
+            
+            .service-item p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .service-price {
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+            
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 1;
+                background: var(--background-color);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .gallery-placeholder {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .gallery-placeholder i {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .calendar-widget {
+                max-width: 400px;
+            }
+            
+            .calendar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .calendar-header button {
+                background: var(--primary-color);
+                color: var(--white);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 2px;
+                background: var(--border-color);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .calendar-day-header {
+                background: var(--text-primary);
+                color: var(--white);
+                padding: 0.5rem;
+                text-align: center;
+                font-weight: bold;
+                font-size: 0.8rem;
+            }
+            
+            .calendar-day {
+                aspect-ratio: 1;
+                background: var(--white);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: var(--transition);
+                position: relative;
+            }
+            
+            .calendar-day.empty {
+                background: var(--background-color);
+                cursor: default;
+            }
+            
+            .calendar-day.available {
+                background: #E8F5E8;
+                color: var(--success-color);
+            }
+            
+            .calendar-day.busy {
+                background: #FFF3CD;
+                color: var(--warning-color);
+            }
+            
+            .calendar-day.booked {
+                background: #F8D7DA;
+                color: var(--error-color);
+            }
+            
+            .calendar-day.today {
+                font-weight: bold;
+                border: 2px solid var(--primary-color);
+            }
+            
+            .calendar-day:hover:not(.empty) {
+                transform: scale(1.1);
+                z-index: 1;
+            }
+            
+            .availability-legend {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .legend-color {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+            }
+            
+            .legend-color.available {
+                background: var(--success-color);
+            }
+            
+            .legend-color.busy {
+                background: var(--warning-color);
+            }
+            
+            .legend-color.booked {
+                background: var(--error-color);
+            }
+            
+            .reviews-section, .similar-professionals {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .reviews-summary {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 2rem;
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .overall-rating {
+                text-align: center;
+            }
+            
+            .rating-number {
+                font-size: 3rem;
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+            
+            .rating-breakdown {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .rating-bar {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .bar {
+                height: 8px;
+                background: var(--border-color);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            
+            .fill {
+                height: 100%;
+                background: var(--warning-color);
+                transition: width 0.3s ease;
+            }
+            
+            .review-card {
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .review-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .reviewer-avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                color: var(--white);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                margin-right: 1rem;
+            }
+            
+            .reviewer-info h4 {
+                margin-bottom: 0.25rem;
+            }
+            
+            .review-rating {
+                color: var(--warning-color);
+                margin-bottom: 0.25rem;
+            }
+            
+            .review-date {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .review-text {
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+            
+            .review-images {
+                color: var(--text-secondary);
+                font-style: italic;
+            }
+            
+            .similar-professionals-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .professional-price {
+                font-weight: bold;
+                color: var(--primary-color);
+                margin: 0.5rem 0;
+            }
+            
+            .btn-small {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            @media (max-width: 768px) {
+                .profile-hero {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                    gap: 1rem;
+                }
+                
+                .professional-badges {
+                    justify-content: center;
+                }
+                
+                
+                
+                .reviews-summary {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+                
+                .rating-bar {
+                    grid-template-columns: auto 1fr auto;
+                    gap: 0.5rem;
+                }
+                
+                .similar-professionals-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

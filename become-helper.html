@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Helper - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="helper-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Become a Trusted Helper</h1>
+                    <p>Join Kerala's largest network of home service professionals and grow your business</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>10,000+</h3>
+                            <p>Active Helpers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>₹25,000</h3>
+                            <p>Average Monthly Earnings</p>
+                        </div>
+                        <div class="stat">
+                            <h3>4.8★</h3>
+                            <p>Average Helper Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2>Why Join HereForYou?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-rupee-sign"></i>
+                        <h3>Earn More</h3>
+                        <p>Set your own rates and earn up to ₹50,000 per month with flexible working hours</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-users"></i>
+                        <h3>More Customers</h3>
+                        <p>Access thousands of customers across Kerala looking for your services</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Insurance Coverage</h3>
+                        <p>Get comprehensive insurance coverage for work-related incidents</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Easy App</h3>
+                        <p>Manage bookings, payments, and customer communication through our simple app</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Flexible Schedule</h3>
+                        <p>Work when you want, where you want. You're in complete control</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Skill Training</h3>
+                        <p>Free training programs to enhance your skills and earn certifications</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Form -->
+        <section class="registration-section">
+            <div class="container">
+                <div class="registration-container">
+                    <div class="registration-header">
+                        <h2>Start Your Journey Today</h2>
+                        <p>Fill out the form below to begin your registration process</p>
+                    </div>
+
+                    <form id="helperRegistrationForm" class="helper-form">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           placeholder="Enter your first name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           placeholder="Enter your last name">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required 
+                                           placeholder="your.email@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required 
+                                           placeholder="9876543210">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth *</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-map-marker-alt"></i> Address Information</h3>
+                            <div class="form-group">
+                                <label for="address">Full Address *</label>
+                                <textarea id="address" name="address" rows="3" required 
+                                         placeholder="Enter your complete address"></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <select id="city" name="city" required>
+                                        <option value="">Select City</option>
+                                        <option value="kochi">Kochi</option>
+                                        <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                                        <option value="thrissur">Thrissur</option>
+                                        <option value="kozhikode">Kozhikode</option>
+                                        <option value="kollam">Kollam</option>
+                                        <option value="alappuzha">Alappuzha</option>
+                                        <option value="palakkad">Palakkad</option>
+                                        <option value="malappuram">Malappuram</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pincode">Pincode *</label>
+                                    <input type="text" id="pincode" name="pincode" required 
+                                           placeholder="682001">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-tools"></i> Service Information</h3>
+                            <div class="form-group">
+                                <label for="services">Services You Provide *</label>
+                                <div class="services-grid">
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="plumbing">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-wrench"></i>
+                                        <span>Plumbing</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="electrical">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-bolt"></i>
+                                        <span>Electrical</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="ac-repair">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-snowflake"></i>
+                                        <span>AC Repair</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="appliance-repair">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-tools"></i>
+                                        <span>Appliance Repair</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="house-cleaning">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-broom"></i>
+                                        <span>House Cleaning</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="car-repair">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-car"></i>
+                                        <span>Car Repair</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="gardening">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-seedling"></i>
+                                        <span>Gardening</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="pest-control">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-bug"></i>
+                                        <span>Pest Control</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="caretaker">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-user-nurse"></i>
+                                        <span>Caretaker</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="cook">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-utensils"></i>
+                                        <span>Cook</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="maid">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-home"></i>
+                                        <span>Maid Service</span>
+                                    </label>
+                                    <label class="service-checkbox">
+                                        <input type="checkbox" name="services" value="other">
+                                        <span class="checkmark"></span>
+                                        <i class="fas fa-plus"></i>
+                                        <span>Other</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="experience">Years of Experience *</label>
+                                    <select id="experience" name="experience" required>
+                                        <option value="">Select Experience</option>
+                                        <option value="0-1">0-1 years</option>
+                                        <option value="1-3">1-3 years</option>
+                                        <option value="3-5">3-5 years</option>
+                                        <option value="5-10">5-10 years</option>
+                                        <option value="10+">10+ years</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hourlyRate">Preferred Hourly Rate</label>
+                                    <input type="number" id="hourlyRate" name="hourlyRate" 
+                                           placeholder="₹300" min="100" max="2000">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Service Description</label>
+                                <textarea id="description" name="description" rows="4" 
+                                         placeholder="Describe your services, specialties, and what makes you unique"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Documents Upload -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-file-upload"></i> Document Upload</h3>
+                            <div class="upload-grid">
+                                <div class="upload-item">
+                                    <label for="profilePhoto">Profile Photo *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="profilePhoto" name="profilePhoto" 
+                                               accept="image/*" required>
+                                        <div class="upload-placeholder">
+                                            <i class="fas fa-camera"></i>
+                                            <span>Upload Photo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="upload-item">
+                                    <label for="aadharCard">Aadhar Card *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="aadharCard" name="aadharCard" 
+                                               accept="image/*,application/pdf" required>
+                                        <div class="upload-placeholder">
+                                            <i class="fas fa-id-card"></i>
+                                            <span>Upload Aadhar</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="upload-item">
+                                    <label for="panCard">PAN Card</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="panCard" name="panCard" 
+                                               accept="image/*,application/pdf">
+                                        <div class="upload-placeholder">
+                                            <i class="fas fa-credit-card"></i>
+                                            <span>Upload PAN</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="upload-item">
+                                    <label for="certificates">Certificates (Optional)</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="certificates" name="certificates" 
+                                               accept="image/*,application/pdf" multiple>
+                                        <div class="upload-placeholder">
+                                            <i class="fas fa-certificate"></i>
+                                            <span>Upload Certificates</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bank Details -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-university"></i> Bank Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bankName">Bank Name *</label>
+                                    <input type="text" id="bankName" name="bankName" required 
+                                           placeholder="State Bank of India">
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountNumber">Account Number *</label>
+                                    <input type="text" id="accountNumber" name="accountNumber" required 
+                                           placeholder="1234567890">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ifscCode">IFSC Code *</label>
+                                    <input type="text" id="ifscCode" name="ifscCode" required 
+                                           placeholder="SBIN0001234">
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountHolderName">Account Holder Name *</label>
+                                    <input type="text" id="accountHolderName" name="accountHolderName" required 
+                                           placeholder="As per bank records">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-file-contract"></i> Terms & Conditions</h3>
+                            <div class="terms-container">
+                                <div class="terms-content">
+                                    <h4>Helper Agreement Summary:</h4>
+                                    <ul>
+                                        <li>You agree to provide quality services to customers</li>
+                                        <li>HereForYou will charge a 15% commission on each booking</li>
+                                        <li>Payments will be processed within 24-48 hours</li>
+                                        <li>You must maintain professional conduct at all times</li>
+                                        <li>Background verification is mandatory for all helpers</li>
+                                        <li>You can set your own working hours and rates</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="agreement-checkboxes">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="agreeTerms" required>
+                                        <span class="checkmark"></span>
+                                        I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a> 
+                                        and <a href="privacy.html" target="_blank">Privacy Policy</a>
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="agreeBackground" required>
+                                        <span class="checkmark"></span>
+                                        I consent to background verification and document verification
+                                    </label>
+                                    
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="agreeMarketing">
+                                        <span class="checkmark"></span>
+                                        I want to receive updates about new features and promotional offers
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary large">
+                                <i class="fas fa-paper-plane"></i> Submit Application
+                            </button>
+                            <p class="submission-note">
+                                Your application will be reviewed within 24-48 hours. 
+                                You'll receive an email with next steps.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Apply Online</h3>
+                        <p>Fill out the registration form with your details and upload required documents</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Verification</h3>
+                        <p>Our team will verify your documents and conduct a background check</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Training</h3>
+                        <p>Complete our online training program and app orientation</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Start Earning</h3>
+                        <p>Get approved and start receiving booking requests from customers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>For Helpers</h4>
+                    <ul>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#process">How It Works</a></li>
+                        <li><a href="support.html">Helper Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> helpers@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Trivandrum, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize form submission
+            document.getElementById('helperRegistrationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleHelperRegistration();
+            });
+            
+            // File upload handlers
+            setupFileUploads();
+        });
+        
+        function handleHelperRegistration() {
+            // Validate required fields
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'dateOfBirth', 'gender', 'address', 'city', 'pincode', 'experience', 'bankName', 'accountNumber', 'ifscCode', 'accountHolderName'];
+            
+            for (const field of requiredFields) {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    showNotification(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`, 'error');
+                    element.focus();
+                    return;
+                }
+            }
+            
+            // Validate services selection
+            const selectedServices = document.querySelectorAll('input[name="services"]:checked');
+            if (selectedServices.length === 0) {
+                showNotification('Please select at least one service', 'error');
+                return;
+            }
+            
+            // Validate file uploads
+            const profilePhoto = document.getElementById('profilePhoto');
+            const aadharCard = document.getElementById('aadharCard');
+            
+            if (!profilePhoto.files.length) {
+                showNotification('Please upload your profile photo', 'error');
+                return;
+            }
+            
+            if (!aadharCard.files.length) {
+                showNotification('Please upload your Aadhar card', 'error');
+                return;
+            }
+            
+            // Validate agreements
+            if (!document.getElementById('agreeTerms').checked) {
+                showNotification('Please agree to terms and conditions', 'error');
+                return;
+            }
+            
+            if (!document.getElementById('agreeBackground').checked) {
+                showNotification('Please consent to background verification', 'error');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitButton = document.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<div class="loading"></div> Submitting...';
+            submitButton.disabled = true;
+            
+            setTimeout(() => {
+                showNotification('Application submitted successfully! You will receive an email within 24-48 hours.');
+                
+                // Reset form
+                document.getElementById('helperRegistrationForm').reset();
+                resetFileUploads();
+                
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Redirect to success page or dashboard
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            }, 3000);
+        }
+        
+        function setupFileUploads() {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const placeholder = this.parentElement.querySelector('.upload-placeholder');
+                    
+                    if (this.files.length > 0) {
+                        const fileName = this.files[0].name;
+                        placeholder.innerHTML = `
+                            <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
+                            <span>${fileName}</span>
+                        `;
+                        placeholder.style.background = 'rgba(39, 174, 96, 0.1)';
+                        placeholder.style.borderColor = 'var(--success-color)';
+                    }
+                });
+            });
+        }
+        
+        function resetFileUploads() {
+            const placeholders = document.querySelectorAll('.upload-placeholder');
+            placeholders.forEach(placeholder => {
+                const input = placeholder.parentElement.querySelector('input[type="file"]');
+                const icon = placeholder.querySelector('i');
+                const span = placeholder.querySelector('span');
+                
+                // Reset to original state
+                icon.className = getOriginalIcon(input.id);
+                span.textContent = getOriginalText(input.id);
+                placeholder.style.background = '';
+                placeholder.style.borderColor = '';
+            });
+        }
+        
+        function getOriginalIcon(inputId) {
+            const icons = {
+                'profilePhoto': 'fas fa-camera',
+                'aadharCard': 'fas fa-id-card',
+                'panCard': 'fas fa-credit-card',
+                'certificates': 'fas fa-certificate'
+            };
+            return icons[inputId] || 'fas fa-upload';
+        }
+        
+        function getOriginalText(inputId) {
+            const texts = {
+                'profilePhoto': 'Upload Photo',
+                'aadharCard': 'Upload Aadhar',
+                'panCard': 'Upload PAN',
+                'certificates': 'Upload Certificates'
+            };
+            return texts[inputId] || 'Upload File';
+        }
+        
+        // Enhanced styles for become helper page
+        const style = document.createElement('style');
+        style.textContent = `
+            .helper-hero {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+                color: var(--white);
+                padding: 4rem 0;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+                margin-bottom: 3rem;
+                opacity: 0.9;
+            }
+            
+            .hero-stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .stat {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 2rem;
+                border-radius: var(--border-radius);
+                backdrop-filter: blur(10px);
+            }
+            
+            .stat h3 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+                color: var(--white);
+            }
+            
+            .stat p {
+                opacity: 0.9;
+                font-size: 1.1rem;
+            }
+            
+            .benefits-section {
+                padding: 4rem 0;
+                background: var(--white);
+            }
+            
+            .benefits-section h2 {
+                text-align: center;
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+                color: var(--text-primary);
+            }
+            
+            .benefits-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+            
+            .benefit-card {
+                background: var(--background-color);
+                padding: 2rem;
+                border-radius: var(--border-radius);
+                text-align: center;
+                transition: var(--transition);
+                border: 2px solid transparent;
+            }
+            
+            .benefit-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--primary-color);
+            }
+            
+            .benefit-card i {
+                font-size: 3rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .benefit-card h3 {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            
+            .benefit-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            
+            .registration-section {
+                padding: 4rem 0;
+                background: var(--background-color);
+            }
+            
+            .registration-container {
+                max-width: 900px;
+                margin: 0 auto;
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+            
+            .registration-header {
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: var(--white);
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+            
+            .registration-header h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .registration-header p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+            
+            .helper-form {
+                padding: 0;
+            }
+            
+            .form-section {
+                padding: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .form-section:last-child {
+                border-bottom: none;
+            }
+            
+            .form-section h3 {
+                color: var(--text-primary);
+                margin-bottom: 2rem;
+                font-size: 1.3rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .form-section h3 i {
+                color: var(--primary-color);
+            }
+            
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .service-checkbox {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border: 2px solid var(--border-color);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            
+            .service-checkbox:hover {
+                border-color: var(--primary-color);
+            }
+            
+            .service-checkbox input[type="checkbox"] {
+                display: none;
+            }
+            
+            .service-checkbox input[type="checkbox"]:checked + .checkmark + i + span {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            .service-checkbox input[type="checkbox"]:checked ~ * {
+                color: var(--primary-color);
+            }
+            
+            .service-checkbox input[type="checkbox"]:checked {
+                background: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+            
+            .service-checkbox .checkmark {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--border-color);
+                border-radius: 4px;
+                position: relative;
+                transition: var(--transition);
+            }
+            
+            .service-checkbox input[type="checkbox"]:checked + .checkmark {
+                background: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+            
+            .service-checkbox input[type="checkbox"]:checked + .checkmark::after {
+                content: '✓';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--green);
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            
+            .service-checkbox i {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+                transition: var(--transition);
+            }
+            
+            .upload-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .upload-item label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+            
+            .file-upload {
+                position: relative;
+            }
+            
+            .file-upload input[type="file"] {
+                position: absolute;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+            
+            .upload-placeholder {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem 1rem;
+                border: 2px dashed var(--border-color);
+                border-radius: 8px;
+                background: var(--background-color);
+                transition: var(--transition);
+                text-align: center;
+                min-height: 120px;
+            }
+            
+            .upload-placeholder:hover {
+                border-color: var(--primary-color);
+                background: rgba(168, 213, 168, 0.1);
+            }
+            
+            .upload-placeholder i {
+                font-size: 2rem;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+            }
+            
+            .upload-placeholder span {
+                color: var(--text-secondary);
+                font-weight: 500;
+            }
+            
+            .terms-container {
+                background: var(--background-color);
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+            
+            .terms-content {
+                margin-bottom: 2rem;
+            }
+            
+            .terms-content h4 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .terms-content ul {
+                list-style: none;
+                padding: 0;
+            }
+            
+            .terms-content li {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid var(--border-color);
+                position: relative;
+                padding-left: 1.5rem;
+            }
+            
+            .terms-content li:before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                color: var(--success-color);
+                font-weight: bold;
+            }
+            
+            .terms-content li:last-child {
+                border-bottom: none;
+            }
+            
+            .agreement-checkboxes {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .checkbox-container {
+                display: flex;
+                align-items: flex-start;
+                cursor: pointer;
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            .checkbox-container input[type="checkbox"] {
+                width: auto;
+                margin-right: 0.5rem;
+                margin-top: 0.1rem;
+                transform: scale(1.2);
+            }
+            
+            .checkbox-container a {
+                color: var(--primary-color);
+                text-decoration: none;
+            }
+            
+            .checkbox-container a:hover {
+                text-decoration: underline;
+            }
+            
+            .form-actions {
+                padding: 2rem;
+                text-align: center;
+                background: var(--background-color);
+            }
+            
+            .btn-primary.large {
+                padding: 1rem 3rem;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+            }
+            
+            .submission-note {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                font-style: italic;
+            }
+            
+            .process-section {
+                padding: 4rem 0;
+                background: var(--white);
+            }
+            
+            .process-section h2 {
+                text-align: center;
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+                color: var(--text-primary);
+            }
+            
+            .process-steps {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .step {
+                text-align: center;
+                position: relative;
+            }
+            
+            .step-number {
+                width: 60px;
+                height: 60px;
+                background: var(--primary-color);
+                color: var(--white);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: 0 auto 1rem;
+            }
+            
+            .step h3 {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            
+            .step p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            
+            @media (max-width: 768px) {
+                .hero-content h1 {
+                    font-size: 2rem;
+                }
+                
+                .hero-stats {
+                    grid-template-columns: 1fr;
+                }
+                
+                .benefits-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+                
+                .services-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .upload-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .process-steps {
+                    grid-template-columns: 1fr;
+                }
+                
+                .registration-header {
+                    padding: 2rem 1rem;
+                }
+                
+                .registration-header h2 {
+                    font-size: 2rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

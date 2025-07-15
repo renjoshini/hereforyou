@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+                <a href="saved-helpers.html" class="nav-link">Saved Helpers</a>
+                <a href="profile.html" class="nav-link active">Profile</a>
+                <button class="btn-secondary" onclick="logout()">Logout</button>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <div class="profile-container">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-avatar-section">
+                        <div class="profile-avatar-large" id="profileAvatarLarge">
+                            <span id="profileInitials">U</span>
+                        </div>
+                        <button class="change-photo-btn" onclick="changeProfilePhoto()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h1 id="profileName">User Name</h1>
+                        <p id="profileEmail">user@example.com</p>
+                        <div class="profile-badges">
+                            <span class="badge verified">
+                                <i class="fas fa-check-circle"></i> Verified Account
+                            </span>
+                            <span class="badge member-since">
+                                <i class="fas fa-calendar"></i> Member since Jan 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tabs -->
+                <div class="profile-tabs">
+                    <button class="tab-btn active" onclick="showTab('personal')">
+                        <i class="fas fa-user"></i> Personal Info
+                    </button>
+                    <button class="tab-btn" onclick="showTab('addresses')">
+                        <i class="fas fa-map-marker-alt"></i> Addresses
+                    </button>
+                    <button class="tab-btn" onclick="showTab('payments')">
+                        <i class="fas fa-credit-card"></i> Payment Methods
+                    </button>
+                    <button class="tab-btn" onclick="showTab('notifications')">
+                        <i class="fas fa-bell"></i> Notifications
+                    </button>
+                    <button class="tab-btn" onclick="showTab('security')">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Personal Info Tab -->
+                    <div id="personal-tab" class="tab-pane active">
+                        <div class="section-card">
+                            <h3>Personal Information</h3>
+                            <form id="personalInfoForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" name="firstName" value="Renjini">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" name="lastName" value="Xavier">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" value="renjini.xavier@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" value="+91 9876543210">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Date of Birth</label>
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth" value="1990-05-15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender">
+                                            <option value="female" selected>Female</option>
+                                            <option value="male">Male</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bio">About Me</label>
+                                    <textarea id="bio" name="bio" rows="4" placeholder="Tell us a bit about yourself...">Regular customer who values quality service and punctuality.</textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-save"></i> Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Addresses Tab -->
+                    <div id="addresses-tab" class="tab-pane">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <h3>Saved Addresses</h3>
+                                <button class="btn-primary" onclick="addNewAddress()">
+                                    <i class="fas fa-plus"></i> Add Address
+                                </button>
+                            </div>
+                            
+                            <div class="addresses-list" id="addressesList">
+                                <div class="address-card">
+                                    <div class="address-header">
+                                        <h4>Home</h4>
+                                        <div class="address-actions">
+                                            <button class="btn-icon" onclick="editAddress('home')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon delete" onclick="deleteAddress('home')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p>123 Rose Garden, Kakkanad<br>Kochi, Kerala - 682030</p>
+                                    <span class="address-type primary">Primary Address</span>
+                                </div>
+                                
+                                <div class="address-card">
+                                    <div class="address-header">
+                                        <h4>Office</h4>
+                                        <div class="address-actions">
+                                            <button class="btn-icon" onclick="editAddress('office')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon delete" onclick="deleteAddress('office')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p>456 Tech Park, Infopark<br>Kochi, Kerala - 682042</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods Tab -->
+                    <div id="payments-tab" class="tab-pane">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <h3>Payment Methods</h3>
+                                <button class="btn-primary" onclick="addPaymentMethod()">
+                                    <i class="fas fa-plus"></i> Add Payment Method
+                                </button>
+                            </div>
+                            
+                            <div class="payment-methods-list">
+                                <div class="payment-card">
+                                    <div class="payment-info">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <div>
+                                            <h4>Visa ending in 1234</h4>
+                                            <p>Expires 12/26</p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-actions">
+                                        <span class="payment-type primary">Primary</span>
+                                        <button class="btn-icon delete" onclick="removePaymentMethod('visa1234')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-card">
+                                    <div class="payment-info">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <div>
+                                            <h4>UPI - renjini@paytm</h4>
+                                            <p>Verified</p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-actions">
+                                        <button class="btn-icon delete" onclick="removePaymentMethod('upi1')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div id="notifications-tab" class="tab-pane">
+                        <div class="section-card">
+                            <h3>Notification Preferences</h3>
+                            
+                            <div class="notification-settings">
+                                <div class="notification-group">
+                                    <h4>Booking Notifications</h4>
+                                    <div class="notification-item">
+                                        <div class="notification-info">
+                                            <strong>Booking Confirmations</strong>
+                                            <p>Get notified when your booking is confirmed</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="notification-item">
+                                        <div class="notification-info">
+                                            <strong>Service Reminders</strong>
+                                            <p>Reminders before your scheduled service</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="notification-item">
+                                        <div class="notification-info">
+                                            <strong>Professional Updates</strong>
+                                            <p>Updates about your assigned professional</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="notification-group">
+                                    <h4>Marketing Communications</h4>
+                                    <div class="notification-item">
+                                        <div class="notification-info">
+                                            <strong>Promotional Offers</strong>
+                                            <p>Special deals and discounts</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="notification-item">
+                                        <div class="notification-info">
+                                            <strong>New Services</strong>
+                                            <p>Updates about new services in your area</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="notification-group">
+                                    <h4>Communication Channels</h4>
+                                    <div class="channel-options">
+                                        <label class="channel-option">
+                                            <input type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-envelope"></i>
+                                            <span>Email</span>
+                                        </label>
+                                        <label class="channel-option">
+                                            <input type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-sms"></i>
+                                            <span>SMS</span>
+                                        </label>
+                                        <label class="channel-option">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-bell"></i>
+                                            <span>Push Notifications</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button class="btn-primary" onclick="saveNotificationSettings()">
+                                    <i class="fas fa-save"></i> Save Preferences
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div id="security-tab" class="tab-pane">
+                        <div class="section-card">
+                            <h3>Security Settings</h3>
+                            
+                            <div class="security-section">
+                                <h4>Change Password</h4>
+                                <form id="passwordForm">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label>
+                                        <input type="password" id="currentPassword" name="currentPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" id="newPassword" name="newPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm New Password</label>
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                    </div>
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-key"></i> Update Password
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <div class="security-section">
+                                <h4>Two-Factor Authentication</h4>
+                                <div class="security-item">
+                                    <div class="security-info">
+                                        <strong>SMS Authentication</strong>
+                                        <p>Add an extra layer of security to your account</p>
+                                    </div>
+                                    <button class="btn-outline" onclick="setupTwoFactor()">
+                                        <i class="fas fa-mobile-alt"></i> Setup
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="security-section">
+                                <h4>Login Activity</h4>
+                                <div class="login-activity">
+                                    <div class="activity-item">
+                                        <div class="activity-info">
+                                            <strong>Current Session</strong>
+                                            <p>Chrome on Windows • Kochi, Kerala</p>
+                                            <span class="activity-time">Active now</span>
+                                        </div>
+                                        <span class="activity-status current">Current</span>
+                                    </div>
+                                    
+                                    <div class="activity-item">
+                                        <div class="activity-info">
+                                            <strong>Mobile App</strong>
+                                            <p>Android App • Kochi, Kerala</p>
+                                            <span class="activity-time">2 hours ago</span>
+                                        </div>
+                                        <button class="btn-link" onclick="terminateSession('mobile1')">
+                                            Terminate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="security-section danger-zone">
+                                <h4>Danger Zone</h4>
+                                <div class="danger-actions">
+                                    <button class="btn-outline danger" onclick="deactivateAccount()">
+                                        <i class="fas fa-user-slash"></i> Deactivate Account
+                                    </button>
+                                    <button class="btn-outline danger" onclick="deleteAccount()">
+                                        <i class="fas fa-trash"></i> Delete Account
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="become-helper.html">Become a Helper</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> support@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+            
+            // Form submissions
+            document.getElementById('personalInfoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                savePersonalInfo();
+            });
+            
+            document.getElementById('passwordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                changePassword();
+            });
+        });
+
+        function loadUserProfile() {
+            const user = getCurrentUser();
+            if (user) {
+                document.getElementById('profileName').textContent = user.name || 'User Name';
+                document.getElementById('profileEmail').textContent = user.email || 'user@example.com';
+                document.getElementById('profileInitials').textContent = getInitials(user.name || 'User Name');
+                
+                // Pre-fill form fields
+                if (user.name) {
+                    const nameParts = user.name.split(' ');
+                    document.getElementById('firstName').value = nameParts[0] || '';
+                    document.getElementById('lastName').value = nameParts.slice(1).join(' ') || '';
+                }
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('phone').value = user.phone || '';
+            }
+        }
+
+        function showTab(tabName) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab pane
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked tab button
+            event.target.classList.add('active');
+        }
+
+        function changeProfilePhoto() {
+            showNotification('Profile photo upload feature coming soon!');
+        }
+
+        function savePersonalInfo() {
+            const formData = new FormData(document.getElementById('personalInfoForm'));
+            const userData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                dateOfBirth: formData.get('dateOfBirth'),
+                gender: formData.get('gender'),
+                bio: formData.get('bio')
+            };
+            
+            // Update current user data
+            const currentUser = getCurrentUser();
+            const updatedUser = {
+                ...currentUser,
+                name: `${userData.firstName} ${userData.lastName}`,
+                email: userData.email,
+                phone: userData.phone
+            };
+            
+            setCurrentUser(updatedUser);
+            loadUserProfile(); // Refresh the display
+            
+            showNotification('Personal information updated successfully!');
+        }
+
+        function addNewAddress() {
+            showNotification('Add address feature coming soon!');
+        }
+
+        function editAddress(addressId) {
+            showNotification(`Edit ${addressId} address feature coming soon!`);
+        }
+
+        function deleteAddress(addressId) {
+            if (confirm(`Are you sure you want to delete the ${addressId} address?`)) {
+                showNotification(`${addressId} address deleted successfully!`);
+            }
+        }
+
+        function addPaymentMethod() {
+            showNotification('Add payment method feature coming soon!');
+        }
+
+        function removePaymentMethod(methodId) {
+            if (confirm('Are you sure you want to remove this payment method?')) {
+                showNotification('Payment method removed successfully!');
+            }
+        }
+
+        function saveNotificationSettings() {
+            showNotification('Notification preferences saved successfully!');
+        }
+
+        function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                showNotification('New passwords do not match!', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 8) {
+                showNotification('Password must be at least 8 characters long!', 'error');
+                return;
+            }
+            
+            showNotification('Password updated successfully!');
+            document.getElementById('passwordForm').reset();
+        }
+
+        function setupTwoFactor() {
+            showNotification('Two-factor authentication setup coming soon!');
+        }
+
+        function terminateSession(sessionId) {
+            if (confirm('Are you sure you want to terminate this session?')) {
+                showNotification('Session terminated successfully!');
+            }
+        }
+
+        function deactivateAccount() {
+            if (confirm('Are you sure you want to deactivate your account? You can reactivate it later by logging in.')) {
+                showNotification('Account deactivation feature coming soon!');
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to permanently delete your account? This action cannot be undone.')) {
+                if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
+                    showNotification('Account deletion feature coming soon!');
+                }
+            }
+        }
+
+        // Enhanced styles for profile page
+        const style = document.createElement('style');
+        style.textContent = `
+            .profile-container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .profile-header {
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: var(--white);
+                padding: 3rem 2rem;
+                border-radius: var(--border-radius);
+                margin-bottom: 2rem;
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .profile-avatar-section {
+                position: relative;
+            }
+            
+            .profile-avatar-large {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.5rem;
+                font-weight: bold;
+                border: 4px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .change-photo-btn {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background: var(--white);
+                color: var(--primary-color);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+            }
+            
+            .change-photo-btn:hover {
+                transform: scale(1.1);
+            }
+            
+            .profile-info h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .profile-info p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                margin-bottom: 1rem;
+            }
+            
+            .profile-badges {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .badge {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .profile-tabs {
+                display: flex;
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-bottom: 2rem;
+                overflow-x: auto;
+            }
+            
+            .tab-btn {
+                flex: 1;
+                padding: 1rem 1.5rem;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                transition: var(--transition);
+                font-weight: 600;
+                color: var(--text-secondary);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+                min-width: fit-content;
+            }
+            
+            .tab-btn.active {
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            .tab-btn:hover:not(.active) {
+                background: var(--background-color);
+                color: var(--primary-color);
+            }
+            
+            .tab-content {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+            
+            .tab-pane {
+                display: none;
+                padding: 2rem;
+            }
+            
+            .tab-pane.active {
+                display: block;
+            }
+            
+            .section-card {
+                margin-bottom: 2rem;
+            }
+            
+            .section-card:last-child {
+                margin-bottom: 0;
+            }
+            
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+            
+            .section-card h3 {
+                color: var(--text-primary);
+                margin-bottom: 2rem;
+                font-size: 1.5rem;
+                border-bottom: 2px solid var(--primary-color);
+                padding-bottom: 0.5rem;
+            }
+            
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-actions {
+                margin-top: 2rem;
+                text-align: right;
+            }
+            
+            .addresses-list {
+                display: grid;
+                gap: 1rem;
+            }
+            
+            .address-card {
+                background: var(--background-color);
+                padding: 1.5rem;
+                border-radius: 8px;
+                border: 2px solid var(--border-color);
+                transition: var(--transition);
+            }
+            
+            .address-card:hover {
+                border-color: var(--primary-color);
+            }
+            
+            .address-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .address-header h4 {
+                color: var(--text-primary);
+                margin: 0;
+            }
+            
+            .address-actions {
+                display: flex;
+                gap: 0.5rem;
+            }
+            
+            .btn-icon {
+                background: none;
+                border: none;
+                color: var(--text-secondary);
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 4px;
+                transition: var(--transition);
+            }
+            
+            .btn-icon:hover {
+                background: var(--background-color);
+                color: var(--primary-color);
+            }
+            
+            .btn-icon.delete:hover {
+                color: var(--error-color);
+            }
+            
+            .address-type {
+                background: var(--primary-color);
+                color: var(--white);
+                padding: 0.25rem 0.75rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            
+            .payment-methods-list {
+                display: grid;
+                gap: 1rem;
+            }
+            
+            .payment-card {
+                background: var(--background-color);
+                padding: 1.5rem;
+                border-radius: 8px;
+                border: 2px solid var(--border-color);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: var(--transition);
+            }
+            
+            .payment-card:hover {
+                border-color: var(--primary-color);
+            }
+            
+            .payment-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .payment-info i {
+                font-size: 2rem;
+                color: var(--primary-color);
+            }
+            
+            .payment-info h4 {
+                margin: 0 0 0.25rem;
+                color: var(--text-primary);
+            }
+            
+            .payment-info p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .payment-actions {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .payment-type {
+                background: var(--success-color);
+                color: var(--white);
+                padding: 0.25rem 0.75rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            
+            .notification-settings {
+                display: grid;
+                gap: 2rem;
+            }
+            
+            .notification-group h4 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            
+            .notification-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+                margin-bottom: 1rem;
+            }
+            
+            .notification-info strong {
+                color: var(--text-primary);
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+            
+            .notification-info p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin: 0;
+            }
+            
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+            
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 34px;
+            }
+            
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+            
+            input:checked + .slider {
+                background-color: var(--primary-color);
+            }
+            
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+            
+            .channel-options {
+                display: flex;
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+            
+            .channel-option {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                cursor: pointer;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+                transition: var(--transition);
+            }
+            
+            .channel-option:hover {
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            .channel-option input[type="checkbox"] {
+                width: auto;
+                margin: 0;
+            }
+            
+            .security-section {
+                margin-bottom: 3rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .security-section:last-child {
+                border-bottom: none;
+            }
+            
+            .security-section h4 {
+                color: var(--text-primary);
+                margin-bottom: 1.5rem;
+                font-size: 1.2rem;
+            }
+            
+            .security-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .security-info strong {
+                color: var(--text-primary);
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+            
+            .security-info p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin: 0;
+            }
+            
+            .login-activity {
+                display: grid;
+                gap: 1rem;
+            }
+            
+            .activity-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .activity-info strong {
+                color: var(--text-primary);
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+            
+            .activity-info p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin: 0 0 0.25rem;
+            }
+            
+            .activity-time {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+            }
+            
+            .activity-status.current {
+                background: var(--success-color);
+                color: var(--white);
+                padding: 0.25rem 0.75rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            
+            .btn-link {
+                background: none;
+                border: none;
+                color: var(--error-color);
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            
+            .danger-zone {
+                border: 2px solid var(--error-color);
+                border-radius: 8px;
+                padding: 2rem;
+                background: rgba(231, 76, 60, 0.05);
+            }
+            
+            .danger-zone h4 {
+                color: var(--error-color);
+            }
+            
+            .danger-actions {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .btn-outline.danger {
+                color: var(--error-color);
+                border-color: var(--error-color);
+            }
+            
+            .btn-outline.danger:hover {
+                background: var(--error-color);
+                color: var(--white);
+            }
+            
+            .nav-link.active {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            @media (max-width: 768px) {
+                .profile-header {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 1rem;
+                }
+                
+                .profile-tabs {
+                    flex-direction: column;
+                }
+                
+                .tab-btn {
+                    justify-content: center;
+                }
+                
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+                
+                .section-header {
+                    flex-direction: column;
+                    gap: 1rem;
+                    align-items: stretch;
+                }
+                
+                .payment-card {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
+                
+                .notification-item,
+                .security-item,
+                .activity-item {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
+                
+                .channel-options {
+                    flex-direction: column;
+                }
+                
+                .danger-actions {
+                    flex-direction: column;
+                }
+                
+                .form-actions {
+                    text-align: center;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

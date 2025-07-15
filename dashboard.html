@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+                <a href="saved-helpers.html" class="nav-link">Saved Helpers</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button class="btn-secondary" onclick="logout()">Logout</button>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <!-- Welcome Section -->
+            <div class="dashboard-header">
+                <h1 id="userWelcome">Welcome to HereForYou!</h1>
+                <p>Find trusted professionals for all your home service needs</p>
+                
+                <div class="search-container mt-2">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search for services..." id="serviceSearch">
+                        <input type="text" placeholder="Your location" id="locationSearch" value="Kochi">
+                        <button class="search-btn" onclick="searchServices()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card">
+                <h3>Quick Actions</h3>
+                <div class="quick-links">
+                    <a href="bookings.html" class="quick-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <a href="saved-helpers.html" class="quick-link">
+                        <i class="fas fa-heart"></i>
+                        <span>Saved Helpers</span>
+                    </a>
+                    <a href="become-helper.html" class="quick-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Become a Helper</span>
+                    </a>
+                    <a href="support.html" class="quick-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="dashboard-card">
+                <h3>Popular Services</h3>
+                <div class="services-grid" id="dashboardServices">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+                <div class="text-center mt-2">
+                    <a href="index.html#services" class="btn-outline">View All Services</a>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="dashboard-card">
+                <h3>Recent Bookings</h3>
+                <div id="recentBookings">
+                    <!-- Recent bookings will be populated by JavaScript -->
+                </div>
+                <div class="text-center mt-2">
+                    <a href="bookings.html" class="btn-outline">View All Bookings</a>
+                </div>
+            </div>
+
+            <!-- Tips & Updates -->
+            <div class="dashboard-card">
+                <h3>Tips & Updates</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Book in Advance</h4>
+                        <p>Schedule your services ahead of time to ensure availability of your preferred professionals.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-star"></i>
+                        <h4>Rate Your Experience</h4>
+                        <p>Help other users by rating and reviewing the services you receive.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Stay Safe</h4>
+                        <p>All our professionals are KYC verified. Report any issues immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="become-helper.html">Become a Helper</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> support@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional dashboard-specific styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .tips-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .tip-card {
+                background: var(--background-color);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                text-align: center;
+                transition: var(--transition);
+            }
+            
+            .tip-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+            
+            .tip-card i {
+                font-size: 2rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .tip-card h4 {
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+            
+            .tip-card p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .booking-card {
+                background: var(--background-color);
+                padding: 1rem;
+                border-radius: var(--border-radius);
+                margin-bottom: 1rem;
+                border-left: 4px solid var(--primary-color);
+            }
+            
+            .booking-card h4 {
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+            
+            .booking-card p {
+                color: var(--text-secondary);
+                margin-bottom: 0.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .status {
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+            }
+            
+            .status.confirmed {
+                color: var(--success-color);
+            }
+            
+            .status.pending {
+                color: var(--warning-color);
+            }
+            
+            .status.completed {
+                color: var(--secondary-color);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

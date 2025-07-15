@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <div class="support-header">
+                <h1>How can we help you?</h1>
+                <p>Get instant support for all your queries and concerns</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-support-actions">
+                <div class="support-action emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Emergency Support</h3>
+                    <p>24/7 emergency helpline for urgent issues</p>
+                    <button class="btn-primary" onclick="callEmergency()">
+                        <i class="fas fa-phone"></i> Call Now: +91 9876543210
+                    </button>
+                </div>
+                
+                <div class="support-action chat">
+                    <i class="fas fa-comments"></i>
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team instantly</p>
+                    <button class="btn-primary" onclick="startLiveChat()">
+                        <i class="fas fa-comment"></i> Start Chat
+                    </button>
+                </div>
+                
+                <div class="support-action email">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Support</h3>
+                    <p>Send us your queries via email</p>
+                    <button class="btn-primary" onclick="window.location.href='mailto:support@hereforyou.in'">
+                        <i class="fas fa-envelope"></i> Send Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Support Categories -->
+            <div class="support-categories">
+                <h2>What do you need help with?</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="showCategory('booking')">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Booking Issues</h3>
+                        <p>Problems with booking, cancellation, or rescheduling</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('payment')">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Payment & Billing</h3>
+                        <p>Payment failures, refunds, or billing queries</p>
+                    </div>
+                    
+                    <div class="category-card"
+                      onclick="showCategory('service')">
+                        <i class="fas fa-tools"></i>
+                        <h3>Service Quality</h3>
+                        <p>Issues with service quality or professional behavior</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('account')">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>Account & Profile</h3>
+                        <p>Account settings, profile updates, or login issues</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('technical')">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Technical Issues</h3>
+                        <p>App problems, website issues, or technical difficulties</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('other')">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>Other Issues</h3>
+                        <p>Any other queries or feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Form -->
+            <div class="support-form-section">
+                <h2>Submit a Support Request</h2>
+                <div class="form-container">
+                    <form id="supportForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required 
+                                       placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       placeholder="Your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Issue Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="booking">Booking Issues</option>
+                                    <option value="payment">Payment & Billing</option>
+                                    <option value="service">Service Quality</option>
+                                    <option value="account">Account & Profile</option>
+                                    <option value="technical">Technical Issues</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookingId">Booking ID (if applicable)</label>
+                            <input type="text" id="bookingId" name="bookingId" 
+                                   placeholder="BK1234567890">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required 
+                                   placeholder="Brief description of your issue">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Detailed Description *</label>
+                            <textarea id="description" name="description" rows="6" required 
+                                     placeholder="Please provide detailed information about your issue. Include any error messages, steps you took, and what you expected to happen."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="priority">Priority Level</label>
+                            <select id="priority" name="priority">
+                                <option value="low">Low - General inquiry</option>
+                                <option value="medium" selected>Medium - Issue affecting service</option>
+                                <option value="high">High - Urgent issue</option>
+                                <option value="critical">Critical - Service completely blocked</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="attachments">Attachments (Optional)</label>
+                            <div class="file-upload-area">
+                                <input type="file" id="attachments" name="attachments" multiple 
+                                       accept="image/*,application/pdf,.doc,.docx">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Click to upload files or drag and drop</span>
+                                    <small>Supported formats: Images, PDF, DOC (Max 10MB each)</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i> Submit Request
+                            </button>
+                            <button type="reset" class="btn-outline">
+                                <i class="fas fa-undo"></i> Reset Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Live Chat Widget -->
+            <div class="chat-widget" id="chatWidget">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <i class="fas fa-headset"></i>
+                        <span>Live Support</span>
+                    </div>
+                    <button class="chat-close" onclick="closeLiveChat()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message support">
+                        <div class="message-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Hello! I'm here to help you. What can I assist you with today?
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message..." 
+                           onkeypress="handleChatKeyPress(event)">
+                    <button onclick="sendChatMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>How do I cancel or reschedule a booking?</h3>
+                        <p>You can cancel or reschedule your booking from the 'My Bookings' section in your dashboard. Cancellation charges may apply based on the timing.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What if I'm not satisfied with the service?</h3>
+                        <p>If you're not satisfied, please contact our support team immediately. We offer service guarantees and will work to resolve any issues.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How are payments processed?</h3>
+                        <p>Payments are processed securely through our platform. You can pay via UPI, cards, wallets, or cash after service completion.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Are all professionals verified?</h3>
+                        <p>Yes, all professionals undergo thorough background verification, document checks, and skill assessments before joining our platform.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-2">
+                    <a href="faq.html" class="btn-outline">View All FAQs</a>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info-section">
+                <h2>Other Ways to Reach Us</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone Support</h3>
+                        <p>Customer Care: +91 9876543210</p>
+                        <p>Emergency: +91 9876543211</p>
+                        <p>Available 24/7</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>General: support@hereforyou.in</p>
+                        <p>Complaints: complaints@hereforyou.in</p>
+                        <p>Response within 24 hours</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Office Address</h3>
+                        <p>HereForYou Technologies Pvt Ltd</p>
+                        <p>123 Tech Park, Infopark</p>
+                        <p>Kochi, Kerala - 682042</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-clock"></i>
+                        <h3>Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 8:00 PM</p>
+                        <p>Saturday: 9:00 AM - 6:00 PM</p>
+                        <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#" onclick="startLiveChat()">Live Chat</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> emergency@hereforyou.in</p>
+                    <p>Available 24/7 for urgent issues</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize support form
+            document.getElementById('supportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleSupportSubmission();
+            });
+            
+            // Initialize file upload
+            setupFileUpload();
+            
+            // Auto-fill user info if logged in
+            const user = getCurrentUser();
+            if (user) {
+                document.getElementById('name').value = user.name || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('phone').value = user.phone || '';
+            }
+        });
+        
+        function callEmergency() {
+            if (confirm('This will call our emergency support line. Continue?')) {
+                showNotification('Connecting to emergency support...');
+                // In a real app, this would initiate a call
+                setTimeout(() => {
+                    showNotification('Call connected. Please stay on the line.');
+                }, 2000);
+            }
+        }
+        
+        function startLiveChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            chatWidget.style.display = 'flex';
+            chatWidget.style.animation = 'slideInUp 0.3s ease';
+            
+            // Simulate typing indicator
+            setTimeout(() => {
+                addChatMessage('support', 'I see you need help. Let me connect you with a specialist...', true);
+            }, 1000);
+        }
+        
+        function closeLiveChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            chatWidget.style.animation = 'slideOutDown 0.3s ease';
+            setTimeout(() => {
+                chatWidget.style.display = 'none';
+            }, 300);
+        }
+        
+        function showCategory(category) {
+            const categorySelect = document.getElementById('category');
+            categorySelect.value = category;
+            
+            // Scroll to form
+            document.querySelector('.support-form-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Highlight the form
+            const formContainer = document.querySelector('.form-container');
+            formContainer.style.border = '2px solid var(--primary-color)';
+            setTimeout(() => {
+                formContainer.style.border = '';
+            }, 2000);
+        }
+        
+        function handleSupportSubmission() {
+            const formData = new FormData(document.getElementById('supportForm'));
+            
+            // Validate required fields
+            const requiredFields = ['name', 'email', 'category', 'subject', 'description'];
+            for (const field of requiredFields) {
+                if (!formData.get(field)) {
+                    showNotification(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`, 'error');
+                    document.getElementById(field).focus();
+                    return;
+                }
+            }
+            
+            // Generate ticket ID
+            const ticketId = 'TK' + Date.now();
+            
+            // Simulate form submission
+            const submitButton = document.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<div class="loading"></div> Submitting...';
+            submitButton.disabled = true;
+            
+            setTimeout(() => {
+                showNotification(`Support request submitted successfully! Ticket ID: ${ticketId}`);
+                
+                // Reset form
+                document.getElementById('supportForm').reset();
+                
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Show confirmation message
+                showTicketConfirmation(ticketId);
+            }, 2000);
+        }
+        
+        function showTicketConfirmation(ticketId) {
+            const confirmation = document.createElement('div');
+            confirmation.className = 'ticket-confirmation';
+            confirmation.innerHTML = `
+                <div class="confirmation-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Request Submitted Successfully!</h3>
+                    <p>Your ticket ID is: <strong>${ticketId}</strong></p>
+                    <p>We'll respond within 24 hours via email.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="btn-primary">
+                        Got it
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(confirmation);
+            
+            setTimeout(() => {
+                confirmation.remove();
+            }, 10000);
+        }
+        
+        function setupFileUpload() {
+            const fileInput = document.getElementById('attachments');
+            const uploadArea = document.querySelector('.file-upload-area');
+            
+            fileInput.addEventListener('change', function() {
+                const files = Array.from(this.files);
+                updateFileDisplay(files);
+            });
+            
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                this.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                
+                const files = Array.from(e.dataTransfer.files);
+                fileInput.files = e.dataTransfer.files;
+                updateFileDisplay(files);
+            });
+        }
+        
+        function updateFileDisplay(files) {
+            const placeholder = document.querySelector('.upload-placeholder');
+            
+            if (files.length > 0) {
+                placeholder.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
+                    <span>${files.length} file(s) selected</span>
+                    <small>${files.map(f => f.name).join(', ')}</small>
+                `;
+            } else {
+                placeholder.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Click to upload files or drag and drop</span>
+                    <small>Supported formats: Images, PDF, DOC (Max 10MB each)</small>
+                `;
+            }
+        }
+        
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addChatMessage('user', message);
+                input.value = '';
+                
+                // Simulate response
+                setTimeout(() => {
+                    const responses = [
+                        "Thank you for your message. Let me help you with that.",
+                        "I understand your concern. Let me check that for you.",
+                        "That's a great question. Here's what I can tell you...",
+                        "I'll need to transfer you to a specialist for this issue.",
+                        "Is there anything else I can help you with today?"
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addChatMessage('support', randomResponse, true);
+                }, 1000);
+            }
+        }
+        
+        function addChatMessage(sender, text, isTyping = false) {
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            if (isTyping) {
+                // Show typing indicator first
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message support typing';
+                typingDiv.innerHTML = `
+                    <div class="message-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Remove typing indicator and show message after delay
+                setTimeout(() => {
+                    typingDiv.remove();
+                    addActualMessage(sender, text);
+                }, 1500);
+            } else {
+                addActualMessage(sender, text);
+            }
+        }
+        
+        function addActualMessage(sender, text) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = sender === 'user' ? 
+                '<i class="fas fa-user"></i>' : 
+                '<i class="fas fa-user-tie"></i>';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    ${avatar}
+                </div>
+                <div class="message-content">
+                    <div class="message-text">${text}</div>
+                    <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Enhanced styles for support page
+        const style = document.createElement('style');
+        style.textContent = `
+            .support-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .support-header h1 {
+                font-size: 2.5rem;
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .support-header p {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+            }
+            
+            .quick-support-actions {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+            
+            .support-action {
+                background: var(--white);
+                padding: 2rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                text-align: center;
+                transition: var(--transition);
+                border: 2px solid transparent;
+            }
+            
+            .support-action:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .support-action.emergency {
+                border-color: var(--error-color);
+            }
+            
+            .support-action.chat {
+                border-color: var(--primary-color);
+            }
+            
+            .support-action.email {
+                border-color: var(--secondary-color);
+            }
+            
+            .support-action i {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .support-action.emergency i {
+                color: var(--error-color);
+            }
+            
+            .support-action.chat i {
+                color: var(--primary-color);
+            }
+            
+            .support-action.email i {
+                color: var(--secondary-color);
+            }
+            
+            .support-action h3 {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            
+            .support-action p {
+                color: var(--text-secondary);
+                margin-bottom: 1.5rem;
+            }
+            
+            .support-categories {
+                margin-bottom: 4rem;
+            }
+            
+            .support-categories h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                font-size: 2rem;
+                color: var(--text-primary);
+            }
+            
+            .categories-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .category-card {
+                background: var(--white);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                text-align: center;
+                cursor: pointer;
+                transition: var(--transition);
+                border: 2px solid transparent;
+            }
+            
+            .category-card:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--primary-color);
+            }
+            
+            .category-card i {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .category-card h3 {
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .category-card p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .support-form-section {
+                background: var(--white);
+                padding: 3rem 2rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-bottom: 4rem;
+            }
+            
+            .support-form-section h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+            }
+            
+            .file-upload-area {
+                position: relative;
+                border: 2px dashed var(--border-color);
+                border-radius: 8px;
+                padding: 2rem;
+                text-align: center;
+                background: var(--background-color);
+                transition: var(--transition);
+                cursor: pointer;
+            }
+            
+            .file-upload-area:hover,
+            .file-upload-area.dragover {
+                border-color: var(--primary-color);
+                background: rgba(168, 213, 168, 0.1);
+            }
+            
+            .file-upload-area input[type="file"] {
+                position: absolute;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+            
+            .upload-placeholder i {
+                font-size: 2rem;
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+                display: block;
+            }
+            
+            .upload-placeholder span {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            
+            .upload-placeholder small {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+            }
+            
+            .chat-widget {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 350px;
+                height: 500px;
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-hover);
+                display: none;
+                flex-direction: column;
+                z-index: 1000;
+                border: 2px solid var(--primary-color);
+            }
+            
+            .chat-header {
+                background: var(--primary-color);
+                color: var(--white);
+                padding: 1rem;
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .chat-title {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 600;
+            }
+            
+            .chat-close {
+                background: none;
+                border: none;
+                color: var(--white);
+                cursor: pointer;
+                font-size: 1.2rem;
+            }
+            
+            .chat-messages {
+                flex: 1;
+                padding: 1rem;
+                overflow-y: auto;
+                background: var(--background-color);
+            }
+            
+            .message {
+                display: flex;
+                margin-bottom: 1rem;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .message.user {
+                flex-direction: row-reverse;
+            }
+            
+            .message-avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--white);
+                font-size: 0.8rem;
+                flex-shrink: 0;
+            }
+            
+            .message.user .message-avatar {
+                background: var(--secondary-color);
+            }
+            
+            .message-content {
+                max-width: 70%;
+            }
+            
+            .message-text {
+                background: var(--white);
+                padding: 0.75rem;
+                border-radius: 12px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            .message.user .message-text {
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            .message-time {
+                font-size: 0.7rem;
+                color: var(--text-secondary);
+                margin-top: 0.25rem;
+                text-align: right;
+            }
+            
+            .message.user .message-time {
+                text-align: left;
+            }
+            
+            .typing-indicator {
+                display: flex;
+                gap: 0.25rem;
+                padding: 0.75rem;
+            }
+            
+            .typing-indicator span {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--text-secondary);
+                animation: typing 1.4s infinite ease-in-out;
+            }
+            
+            .typing-indicator span:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            
+            .typing-indicator span:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            
+            @keyframes typing {
+                0%, 60%, 100% {
+                    transform: translateY(0);
+                    opacity: 0.5;
+                }
+                30% {
+                    transform: translateY(-10px);
+                    opacity: 1;
+                }
+            }
+            
+            .chat-input {
+                display: flex;
+                padding: 1rem;
+                background: var(--white);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .chat-input input {
+                flex: 1;
+                padding: 0.75rem;
+                border: 1px solid var(--border-color);
+                border-radius: 20px;
+                outline: none;
+                margin-right: 0.5rem;
+            }
+            
+            .chat-input button {
+                background: var(--primary-color);
+                color: var(--white);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .faq-section {
+                margin-bottom: 4rem;
+            }
+            
+            .faq-section h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+            }
+            
+            .faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .faq-item {
+                background: var(--white);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                border-left: 4px solid var(--primary-color);
+            }
+            
+            .faq-item h3 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .faq-item p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            
+            .contact-info-section {
+                background: var(--white);
+                padding: 3rem 2rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+            
+            .contact-info-section h2 {
+                text-align: center;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+            }
+            
+            .contact-methods {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+            
+            .contact-method {
+                text-align: center;
+                padding: 1.5rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .contact-method i {
+                font-size: 2rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .contact-method h3 {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            
+            .contact-method p {
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .ticket-confirmation {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1001;
+            }
+            
+            .confirmation-content {
+                background: var(--white);
+                padding: 3rem;
+                border-radius: var(--border-radius);
+                text-align: center;
+                max-width: 400px;
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .confirmation-content i {
+                font-size: 3rem;
+                color: var(--success-color);
+                margin-bottom: 1rem;
+            }
+            
+            .confirmation-content h3 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .confirmation-content p {
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+            }
+            
+            @keyframes slideInUp {
+                from {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutDown {
+                from {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .quick-support-actions {
+                    grid-template-columns: 1fr;
+                }
+                
+                .categories-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .faq-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .contact-methods {
+                    grid-template-columns: 1fr;
+                }
+                
+                .chat-widget {
+                    width: 90%;
+                    height: 70%;
+                    bottom: 10px;
+                    right: 5%;
+                }
+                
+                .support-form-section {
+                    padding: 2rem 1rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

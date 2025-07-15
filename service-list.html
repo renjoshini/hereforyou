@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Professionals - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link">Sign Up</a>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <!-- Service Header -->
+            <div class="service-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> > 
+                    <span id="serviceTitle">Service Professionals</span>
+                </div>
+                <h1 id="serviceTitle">Service Professionals</h1>
+                <p>📍 <span id="locationDisplay">Kochi, Kerala</span> | <a href="#" onclick="changeLocation()">Change Location</a></p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label>Sort by:</label>
+                        <select id="sortBy" onchange="sortProfessionals()">
+                            <option value="nearest">Nearest</option>
+                            <option value="rating">Highest Rating</option>
+                            <option value="price">Lowest Price</option>
+                            <option value="reviews">Most Reviews</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Rating:</label>
+                        <select id="filterRating" onchange="filterProfessionals()">
+                            <option value="all">All Ratings</option>
+                            <option value="4.5">4.5+ Stars</option>
+                            <option value="4.0">4.0+ Stars</option>
+                            <option value="3.5">3.5+ Stars</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range:</label>
+                        <select id="filterPrice" onchange="filterProfessionals()">
+                            <option value="all">All Prices</option>
+                            <option value="low">Under ₹200/hr</option>
+                            <option value="medium">₹200-400/hr</option>
+                            <option value="high">Above ₹400/hr</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Availability:</label>
+                        <select id="filterAvailability" onchange="filterProfessionals()">
+                            <option value="all">All</option>
+                            <option value="today">Available Today</option>
+                            <option value="tomorrow">Available Tomorrow</option>
+                            <option value="weekend">Available Weekend</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professionals List -->
+            <div class="professionals-section">
+                <div class="section-header">
+                    <h3>Available Professionals</h3>
+                    <span class="result-count" id="resultCount">Found 0 professionals</span>
+                </div>
+                <div id="professionalsList" class="professionals-list">
+                    <!-- Professionals will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="text-center p-3">
+                    <i class="fas fa-search" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                    <h3>No professionals found</h3>
+                    <p>Try adjusting your filters or search in a different location</p>
+                    <button class="btn-primary" onclick="window.location.href='become-helper.html'">
+                        Become a Helper
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="become-helper.html">Become a Helper</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> support@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function changeLocation() {
+            const newLocation = prompt('Enter your location:', document.getElementById('locationDisplay').textContent);
+            if (newLocation) {
+                document.getElementById('locationDisplay').textContent = newLocation;
+                showNotification('Location updated to ' + newLocation);
+            }
+        }
+        
+        function sortProfessionals() {
+            const sortBy = document.getElementById('sortBy').value;
+            showNotification('Sorting by ' + sortBy);
+            // Re-render professionals with sorting logic
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('service');
+            renderProfessionals(serviceId);
+        }
+        
+        function filterProfessionals() {
+            const rating = document.getElementById('filterRating').value;
+            const price = document.getElementById('filterPrice').value;
+            const availability = document.getElementById('filterAvailability').value;
+            
+            showNotification('Filters applied');
+            // Re-render professionals with filtering logic
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('service');
+            renderProfessionals(serviceId);
+        }
+        
+        // Enhanced professional card rendering with actions
+        function renderProfessionals(serviceId) {
+            const professionalsList = document.getElementById('professionalsList');
+            const resultCount = document.getElementById('resultCount');
+            const noResults = document.getElementById('noResults');
+            
+            if (!professionalsList) return;
+            
+            const serviceProfessionals = professionals[serviceId] || [];
+            
+            if (serviceProfessionals.length === 0) {
+                professionalsList.style.display = 'none';
+                noResults.style.display = 'block';
+                resultCount.textContent = 'Found 0 professionals';
+                return;
+            }
+            
+            professionalsList.style.display = 'grid';
+            noResults.style.display = 'none';
+            resultCount.textContent = `Found ${serviceProfessionals.length} professionals`;
+            
+            professionalsList.innerHTML = serviceProfessionals.map(prof => `
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <div class="professional-avatar">
+                            ${getInitials(prof.name)}
+                        </div>
+                        <div class="professional-info">
+                            <h3>${prof.name}</h3>
+                            <p>${prof.location}</p>
+                            ${prof.verified ? '<span class="verified-badge"><i class="fas fa-check-circle"></i> KYC Verified</span>' : ''}
+                        </div>
+                        <div class="professional-actions-quick">
+                            <button class="btn-icon" onclick="saveProfessional('${prof.id}')" title="Save Helper">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon" onclick="shareProfessional('${prof.id}')" title="Share">
+                                <i class="fas fa-share"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                ${'★'.repeat(Math.floor(prof.rating))}${'☆'.repeat(5 - Math.floor(prof.rating))}
+                            </div>
+                            <span>${prof.rating} (${prof.reviews} reviews)</span>
+                        </div>
+                        <div class="professional-stats">
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                <span>${prof.experience}</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-rupee-sign"></i>
+                                <span>${prof.hourlyRate}</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>2.5 km away</span>
+                            </div>
+                        </div>
+                        <div class="specialties">
+                            <strong>Specialties:</strong> ${prof.specialties.slice(0, 2).join(', ')}
+                            ${prof.specialties.length > 2 ? ` +${prof.specialties.length - 2} more` : ''}
+                        </div>
+                        <div class="availability-indicator">
+                            <i class="fas fa-circle" style="color: var(--success-color);"></i>
+                            <span>Available today</span>
+                        </div>
+                    </div>
+                    <div class="professional-actions">
+                        <button class="btn-outline" onclick="viewProfile('${prof.id}', '${serviceId}')">
+                            <i class="fas fa-user"></i> View Profile
+                        </button>
+                        <button class="btn-outline" onclick="contactProfessional('${prof.id}')">
+                            <i class="fas fa-phone"></i> Call
+                        </button>
+                        <button class="btn-primary" onclick="bookNow('${prof.id}', '${serviceId}')">
+                            <i class="fas fa-calendar"></i> Book Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function saveProfessional(professionalId) {
+            // Add to saved helpers
+            const savedHelpers = JSON.parse(localStorage.getItem('savedHelpers')) || [];
+            if (!savedHelpers.includes(professionalId)) {
+                savedHelpers.push(professionalId);
+                localStorage.setItem('savedHelpers', JSON.stringify(savedHelpers));
+                showNotification('Helper saved to your favorites');
+                event.target.style.color = 'var(--error-color)';
+            } else {
+                showNotification('Helper already in your favorites');
+            }
+        }
+        
+        function shareProfessional(professionalId) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this professional on HereForYou',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showNotification('Profile link copied to clipboard');
+            }
+        }
+        
+        function contactProfessional(professionalId) {
+            showNotification('Connecting call... Number will be masked for privacy');
+        }
+        
+        // Additional styles for the service list page
+        const style = document.createElement('style');
+        style.textContent = `
+            .service-header {
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .breadcrumb {
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+            }
+            
+            .breadcrumb a {
+                color: var(--primary-color);
+                text-decoration: none;
+            }
+            
+            .filters-section {
+                background: var(--white);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-bottom: 2rem;
+            }
+            
+            .filters-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .filter-group label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .filter-group select {
+                width: 100%;
+                padding: 0.5rem;
+                border: 2px solid var(--border-color);
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+            
+            .result-count {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .professionals-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+            }
+            
+            .professional-actions-quick {
+                display: flex;
+                gap: 0.5rem;
+            }
+            
+            .btn-icon {
+                width: 40px;
+                height: 40px;
+                border: none;
+                background: var(--background-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: var(--transition);
+                color: var(--text-secondary);
+            }
+            
+            .btn-icon:hover {
+                background: var(--primary-color);
+                color: var(--white);
+                transform: scale(1.1);
+            }
+            
+            .professional-stats {
+                display: flex;
+                gap: 1rem;
+                margin: 1rem 0;
+                flex-wrap: wrap;
+            }
+            
+            .stat {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .stat i {
+                color: var(--primary-color);
+            }
+            
+            .specialties {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .availability-indicator {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+                color: var(--success-color);
+                margin-bottom: 1rem;
+            }
+            
+            .professional-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0.5rem;
+            }
+            
+            .professional-actions .btn-outline,
+            .professional-actions .btn-primary {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.25rem;
+            }
+            
+            .no-results {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 3rem;
+                text-align: center;
+            }
+            
+            @media (max-width: 768px) {
+                .filters-container {
+                    grid-template-columns: 1fr;
+                }
+                
+                .section-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+                }
+                
+                .professionals-list {
+                    grid-template-columns: 1fr;
+                }
+                
+                .professional-actions {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Helpers - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="bookings.html" class="nav-link">My Bookings</a>
+                <a href="saved-helpers.html" class="nav-link active">Saved Helpers</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button class="btn-secondary" onclick="logout()">Logout</button>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 20px;">
+            <div class="page-header">
+                <h1>Saved Helpers</h1>
+                <p>Your favorite service professionals for quick booking</p>
+            </div>
+
+            <!-- Saved Helpers List -->
+            <div class="saved-helpers-container" id="savedHelpersContainer">
+                <!-- Helpers will be populated by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>No saved helpers yet</h3>
+                <p>Save your favorite professionals for quick access and easy rebooking!</p>
+                <button class="btn-primary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-search"></i> Find Helpers
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="become-helper.html">Become a Helper</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> support@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Mock saved helpers data
+        const mockSavedHelpers = [
+            {
+                id: 'p1',
+                name: 'Suresh Kumar',
+                service: 'Plumbing',
+                rating: 4.8,
+                reviews: 156,
+                hourlyRate: '₹300/hour',
+                location: 'Kakkanad, Kochi',
+                verified: true,
+                lastBooked: '2024-01-10',
+                specialties: ['Pipe repairs', 'Bathroom fittings', 'Water heater service'],
+                availability: 'Available today'
+            },
+            {
+                id: 'm1',
+                name: 'Meera Kumari',
+                service: 'House Cleaning',
+                rating: 4.7,
+                reviews: 134,
+                hourlyRate: '₹200/hour',
+                location: 'Palarivattom, Kochi',
+                verified: true,
+                lastBooked: '2024-01-08',
+                specialties: ['Deep cleaning', 'Regular cleaning', 'Organization'],
+                availability: 'Available tomorrow'
+            },
+            {
+                id: 'a1',
+                name: 'Renjini Devi',
+                service: 'AC Repair',
+                rating: 4.9,
+                reviews: 203,
+                hourlyRate: '₹400/hour',
+                location: 'Vazhuthacaud, Thiruvananthapuram',
+                verified: true,
+                lastBooked: '2023-12-28',
+                specialties: ['Split AC service', 'Window AC repair', 'Installation'],
+                availability: 'Busy today'
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedHelpers();
+        });
+
+        function loadSavedHelpers() {
+            const savedHelperIds = JSON.parse(localStorage.getItem('savedHelpers')) || [];
+            const savedHelpers = mockSavedHelpers.filter(helper => savedHelperIds.includes(helper.id));
+            
+            renderSavedHelpers(savedHelpers);
+        }
+
+        function renderSavedHelpers(helpers) {
+            const container = document.getElementById('savedHelpersContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (helpers.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            container.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            container.innerHTML = helpers.map(helper => `
+                <div class="saved-helper-card">
+                    <div class="helper-header">
+                        <div class="helper-main-info">
+                            <div class="helper-avatar">
+                                ${getInitials(helper.name)}
+                            </div>
+                            <div class="helper-details">
+                                <h3>${helper.name}</h3>
+                                <p class="service-type">${helper.service}</p>
+                                <p class="location">
+                                    <i class="fas fa-map-marker-alt"></i> ${helper.location}
+                                </p>
+                                ${helper.verified ? '<span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>' : ''}
+                            </div>
+                        </div>
+                        <button class="unsave-btn" onclick="unsaveHelper('${helper.id}')" title="Remove from saved">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="helper-stats">
+                        <div class="rating">
+                            <div class="stars">
+                                ${'★'.repeat(Math.floor(helper.rating))}${'☆'.repeat(5 - Math.floor(helper.rating))}
+                            </div>
+                            <span>${helper.rating} (${helper.reviews} reviews)</span>
+                        </div>
+                        <div class="rate">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>${helper.hourlyRate}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="helper-info">
+                        <div class="specialties">
+                            <strong>Specialties:</strong> ${helper.specialties.slice(0, 2).join(', ')}
+                            ${helper.specialties.length > 2 ? ` +${helper.specialties.length - 2} more` : ''}
+                        </div>
+                        <div class="last-booking">
+                            <i class="fas fa-history"></i>
+                            <span>Last booked: ${formatDate(helper.lastBooked)}</span>
+                        </div>
+                        <div class="availability ${helper.availability.toLowerCase().includes('busy') ? 'busy' : 'available'}">
+                            <i class="fas fa-circle"></i>
+                            <span>${helper.availability}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="helper-actions">
+                        <button class="btn-outline" onclick="viewHelperProfile('${helper.id}')">
+                            <i class="fas fa-user"></i> View Profile
+                        </button>
+                        <button class="btn-outline" onclick="contactHelper('${helper.id}')">
+                            <i class="fas fa-phone"></i> Call
+                        </button>
+                        <button class="btn-primary" onclick="bookAgainHelper('${helper.id}')">
+                            <i class="fas fa-calendar"></i> Book Again
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function unsaveHelper(helperId) {
+            if (confirm('Remove this helper from your saved list?')) {
+                let savedHelpers = JSON.parse(localStorage.getItem('savedHelpers')) || [];
+                savedHelpers = savedHelpers.filter(id => id !== helperId);
+                localStorage.setItem('savedHelpers', JSON.stringify(savedHelpers));
+                
+                showNotification('Helper removed from saved list');
+                loadSavedHelpers(); // Reload the list
+            }
+        }
+
+        function viewHelperProfile(helperId) {
+            // Find the service type for this helper
+            const helper = mockSavedHelpers.find(h => h.id === helperId);
+            const serviceMapping = {
+                'Plumbing': 'plumbing',
+                'House Cleaning': 'maid',
+                'AC Repair': 'ac-repair'
+            };
+            const serviceId = serviceMapping[helper.service] || 'plumbing';
+            
+            window.location.href = `professional-profile.html?id=${helperId}&service=${serviceId}`;
+        }
+
+        function contactHelper(helperId) {
+            showNotification('Contact details will be shared after booking confirmation');
+        }
+
+        function bookAgainHelper(helperId) {
+            const helper = mockSavedHelpers.find(h => h.id === helperId);
+            showNotification(`Redirecting to book ${helper.service} with ${helper.name}...`);
+            
+            setTimeout(() => {
+                const serviceMapping = {
+                    'Plumbing': 'plumbing',
+                    'House Cleaning': 'maid',
+                    'AC Repair': 'ac-repair'
+                };
+                const serviceId = serviceMapping[helper.service] || 'plumbing';
+                window.location.href = `booking.html?professional=${helperId}&service=${serviceId}`;
+            }, 1500);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) return 'Yesterday';
+            if (diffDays < 7) return `${diffDays} days ago`;
+            if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+            return date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        // Enhanced styles for saved helpers page
+        const style = document.createElement('style');
+        style.textContent = `
+            .page-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .page-header h1 {
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+            }
+            
+            .saved-helpers-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                gap: 2rem;
+            }
+            
+            .saved-helper-card {
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 2rem;
+                transition: var(--transition);
+                border: 2px solid transparent;
+                position: relative;
+            }
+            
+            .saved-helper-card:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--primary-color);
+            }
+            
+            .helper-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 1.5rem;
+            }
+            
+            .helper-main-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                flex: 1;
+            }
+            
+            .helper-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--white);
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+            
+            .helper-details h3 {
+                color: var(--text-primary);
+                margin-bottom: 0.25rem;
+                font-size: 1.2rem;
+            }
+            
+            .service-type {
+                color: var(--primary-color);
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .location {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+            }
+            
+            .location i {
+                color: var(--secondary-color);
+            }
+            
+            .verified-badge {
+                background: var(--success-color);
+                color: var(--white);
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                width: fit-content;
+            }
+            
+            .unsave-btn {
+                background: none;
+                border: none;
+                color: var(--error-color);
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: var(--transition);
+                padding: 0.5rem;
+                border-radius: 50%;
+            }
+            
+            .unsave-btn:hover {
+                background: rgba(231, 76,60,0.1);
+                transform: scale(1.1);
+            }
+            
+            .helper-stats {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+                padding: 1rem;
+                background: var(--background-color);
+                border-radius: 8px;
+            }
+            
+            .rating {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .stars {
+                color: var(--warning-color);
+                font-size: 1.1rem;
+            }
+            
+            .rating span {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            
+            .rate {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            .helper-info {
+                margin-bottom: 2rem;
+            }
+            
+            .specialties {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+            
+            .specialties strong {
+                color: var(--text-primary);
+            }
+            
+            .last-booking {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .last-booking i {
+                color: var(--secondary-color);
+            }
+            
+            .availability {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+            
+            .availability.available {
+                color: var(--success-color);
+            }
+            
+            .availability.busy {
+                color: var(--warning-color);
+            }
+            
+            .availability i {
+                font-size: 0.7rem;
+            }
+            
+            .helper-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0.5rem;
+            }
+            
+            .helper-actions .btn-outline,
+            .helper-actions .btn-primary {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.25rem;
+                text-align: center;
+            }
+            
+            .empty-state {
+                text-align: center;
+                padding: 4rem 2rem;
+                background: var(--white);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+            
+            .empty-icon {
+                width: 80px;
+                height: 80px;
+                background: var(--background-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+            }
+            
+            .empty-icon i {
+                font-size: 2.5rem;
+                color: var(--error-color);
+            }
+            
+            .empty-state h3 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+            
+            .empty-state p {
+                color: var(--text-secondary);
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .nav-link.active {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            @media (max-width: 768px) {
+                .saved-helpers-container {
+                    grid-template-columns: 1fr;
+                }
+                
+                .helper-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+                }
+                
+                .helper-main-info {
+                    width: 100%;
+                }
+                
+                .unsave-btn {
+                    align-self: flex-end;
+                }
+                
+                .helper-stats {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
+                
+                .helper-actions {
+                    grid-template-columns: 1fr;
+                    gap: 0.75rem;
+                }
+                
+                .helper-actions .btn-outline,
+                .helper-actions .btn-primary {
+                    padding: 1rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

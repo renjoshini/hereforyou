@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Profile - HereForYou</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fefcf8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-avatar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .profile-avatar img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #cce3d1;
+    }
+
+    .profile-info {
+      text-align: center;
+    }
+
+    .profile-info h2 {
+      margin: 0.5rem 0;
+      color: #2f5233;
+    }
+
+    .profile-info p {
+      margin: 0.2rem 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .edit-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #88b377;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .edit-btn:hover {
+      background-color: #709d62;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <i class="fas fa-home"></i>
+        <span>HereForYou</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="logout.html" class="nav-link">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-container" id="profileSection">
+      <div class="profile-avatar">
+        <img id="profileAvatar" src="default-avatar.png" alt="Profile Picture" />
+      </div>
+      <div class="profile-info">
+        <h2 id="profileName">Loading...</h2>
+        <p>Email: <span id="profileEmail"></span></p>
+        <p>Phone: <span id="profilePhone"></span></p>
+        <p id="membershipLine" style="display:none">
+          Membership: <span id="profileMembership"></span>
+        </p>
+
+        <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>HereForYou</h3>
+          <p>Connecting Kerala with trusted home service professionals</p>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="support.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 HereForYou. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch user data from localStorage
+    const userData = JSON.parse(localStorage.getItem("hereForYouUser"));
+
+    if (userData) {
+      document.getElementById("profileName").textContent = userData.name || "Unnamed User";
+      document.getElementById("profileEmail").textContent = userData.email || "Not Provided";
+      document.getElementById("profilePhone").textContent = userData.phone || "Not Provided";
+
+      // Show membership only if it exists and is not empty
+      if (userData.membership && userData.membership.trim() !== "") {
+        document.getElementById("profileMembership").textContent = userData.membership;
+        document.getElementById("membershipLine").style.display = "block";
+      } else {
+        document.getElementById("membershipLine").style.display = "none";
+      }
+
+      const avatarImg = document.getElementById("profileAvatar");
+      if (userData.profilePicUrl && userData.profilePicUrl.trim() !== "") {
+        avatarImg.src = userData.profilePicUrl;
+      } else {
+        avatarImg.src = "default-avatar.png"; // Make sure this file exists
+      }
+    } else {
+      document.getElementById("profileSection").innerHTML = `
+        <p style="text-align:center;">You are not logged in. <a href="login.html">Go to Login</a></p>
+      `;
+    }
+
+    function editProfile() {
+      alert("Edit Profile will be available soon!");
+    }
+  </script>
+</body>
+</html>

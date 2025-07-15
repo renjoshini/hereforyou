@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - HereForYou</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: 2rem;">
+            <div class="form-container">
+                <h2 class="text-center mb-3">Join HereForYou</h2>
+                <p class="text-center mb-3">Create your account to access trusted services</p>
+                
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your 10-digit phone number" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          required
+                          placeholder="Create a strong password (min 8 characters)"
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                          type="password"
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          required
+                          placeholder="Confirm your password"
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeTerms" required />
+                            <span class="checkmark"></span>
+                            I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a> and
+                            <a href="privacy.html" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeMarketing" />
+                            <span class="checkmark"></span>
+                            I want to receive promotional offers and updates via email/SMS
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary" style="width: 100%;">Create Account</button>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="login.html" class="nav-link">Sign in here</a></p>
+                    </div>
+                </form>
+                
+                <div class="divider mt-3 mb-3" style="text-align: center; color: var(--text-secondary);">
+                    or
+                </div>
+                
+                <div class="social-signup">
+                    <button
+                      class="btn-outline"
+                      style="width: 100%; margin-bottom: 1rem;"
+                      onclick="signupWithGoogle()"
+                    >
+                      <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button class="btn-outline" style="width: 100%;" onclick="signupWithPhone()">
+                      <i class="fas fa-phone"></i> Sign up with Phone
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function signupWithGoogle() {
+            showNotification('Google signup will be available soon');
+        }
+
+        function signupWithPhone() {
+            showNotification('Phone signup will be available soon');
+        }
+
+        // Add checkbox styling
+        const style = document.createElement('style');
+        style.textContent = `
+            .checkbox-container {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .checkbox-container input[type="checkbox"] {
+                width: auto;
+                margin-right: 0.5rem;
+                transform: scale(1.2);
+            }
+
+            .checkbox-container a {
+                color: var(--primary-color);
+                text-decoration: none;
+            }
+
+            .checkbox-container a:hover {
+                text-decoration: underline;
+            }
+
+            .divider {
+                position: relative;
+                text-align: center;
+                margin: 1.5rem 0;
+            }
+
+            .divider::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: var(--border-color);
+                z-index: 1;
+            }
+
+            .divider {
+                background: var(--white);
+                padding: 0 1rem;
+                position: relative;
+                z-index: 2;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Add this signup form handling script -->
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        const user = {
+          name,
+          email,
+          phone,
+          password,
+          membership: "Standard",
+          profilePicUrl: "https://cdn-icons-png.flaticon.com/512/847/847969.png"
+        };
+
+        localStorage.setItem('hereForYouUser', JSON.stringify(user));
+
+        alert('Signup successful! Please login now.');
+
+        window.location.href = 'login.html';
+      });
+    </script>
+</body>
+</html>

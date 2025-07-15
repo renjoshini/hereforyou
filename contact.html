@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HereForYou</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-home"></i>
+                <span>HereForYou</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="support.html" class="nav-link">Support</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contact Hero -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Get in Touch</h1>
+                <p>We're here to help you with any questions or concerns</p>
+            </div>
+        </section>
+
+        <!-- Contact Options -->
+        <section class="contact-options">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Call Us</h3>
+                        <p>Customer Support: <strong>+91 9876543210</strong></p>
+                        <p>Emergency Line: <strong>+91 9876543211</strong></p>
+                        <p>Available 24/7 for your assistance</p>
+                        <button class="btn-primary" onclick="window.location.href='tel:+919876543210'">
+                            Call Now
+                        </button>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>General Queries: <strong>hello@hereforyou.in</strong></p>
+                        <p>Support: <strong>support@hereforyou.in</strong></p>
+                        <p>Response within 24 hours</p>
+                        <button class="btn-primary" onclick="window.location.href='mailto:hello@hereforyou.in'">
+                            Send Email
+                        </button>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Live Chat</h3>
+                        <p>Instant support through our live chat</p>
+                        <p>Available: 9 AM - 9 PM daily</p>
+                        <p>Get immediate assistance</p>
+                        <button class="btn-primary" onclick="startLiveChat()">
+                            Start Chat
+                        </button>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Us</h3>
+                        <p><strong>HereForYou Technologies Pvt Ltd</strong></p>
+                        <p>123 Infopark, Kakkanad</p>
+                        <p>Kochi, Kerala - 682042</p>
+                        <button class="btn-primary" onclick="showMap()">
+                            Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="form-container">
+                    <h2>Send us a Message</h2>
+                    <p>We'd love to hear from you. Fill out the form below and we'll get back to you soon.</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Your last name">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="complaint">Complaint</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required 
+                                     placeholder="Please provide details about your inquiry or message"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Office Map -->
+        <section class="map-section">
+            <div class="container">
+                <h2>Find Our Office</h2>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>HereForYou Office Location</h3>
+                        <p>123 Infopark, Kakkanad, Kochi, Kerala - 682042</p>
+                        <button class="btn-outline" onclick="openGoogleMaps()">
+                            Open in Google Maps
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="office-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 8:00 PM</p>
+                            <p>Saturday: 9:00 AM - 6:00 PM</p>
+                            <p>Sunday: 10:00 AM - 4:00 PM</p>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-car"></i>
+                            <h4>Parking</h4>
+                            <p>Free parking available</p>
+                            <p>Visitor parking on Ground Floor</p>
+                            <p>Accessible parking spots available</p>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-bus"></i>
+                            <h4>Public Transport</h4>
+                            <p>Bus Stop: Infopark - 2 min walk</p>
+                            <p>Metro: Kakkanad - 10 min auto ride</p>
+                            <p>Railway: Ernakulam - 30 min drive</p>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-wheelchair"></i>
+                            <h4>Accessibility</h4>
+                            <p>Wheelchair accessible entrance</p>
+                            <p>Elevator access to all floors</p>
+                            <p>Accessible restrooms available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HereForYou</h3>
+                    <p>Connecting Kerala with trusted home service professionals</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="become-helper.html">Become a Helper</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> hello@hereforyou.in</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HereForYou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleContactSubmission();
+            });
+        });
+
+        function handleContactSubmission() {
+            const formData = new FormData(document.getElementById('contactForm'));
+            
+            // Validate required fields
+            const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+            for (const field of requiredFields) {
+                if (!formData.get(field)) {
+                    showNotification(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`, 'error');
+                    document.getElementById(field).focus();
+                    return;
+                }
+            }
+
+            // Simulate form submission
+            const submitButton = document.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<div class="loading"></div> Sending...';
+            submitButton.disabled = true;
+
+            setTimeout(() => {
+                showNotification('Message sent successfully! We\'ll get back to you within 24 hours.');
+                document.getElementById('contactForm').reset();
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }, 2000);
+        }
+
+        function startLiveChat() {
+            showNotification('Live chat feature coming soon!');
+        }
+
+        function showMap() {
+            openGoogleMaps();
+        }
+
+        function openGoogleMaps() {
+            const address = "Infopark, Kakkanad, Kochi, Kerala 682042";
+            const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(url, '_blank');
+        }
+
+        // Enhanced styles for contact page
+        const style = document.createElement('style');
+        style.textContent = `
+            .contact-hero {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+                color: var(--white);
+                padding: 4rem 0;
+                text-align: center;
+            }
+            
+            .contact-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+            
+            .contact-hero p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+            }
+            
+            .contact-options {
+                padding: 4rem 0;
+                background: var(--white);
+            }
+            
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+            
+            .contact-card {
+                background: var(--background-color);
+                padding: 2rem;
+                border-radius: var(--border-radius);
+                text-align: center;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                border: 2px solid transparent;
+            }
+            
+            .contact-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--primary-color);
+            }
+            
+            .contact-card i {
+                font-size: 3rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .contact-card h3 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .contact-card p {
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+            
+            .contact-card button {
+                margin-top: 1rem;
+            }
+            
+            .contact-form-section {
+                padding: 4rem 0;
+                background: var(--background-color);
+            }
+            
+            .contact-form-section h2 {
+                text-align: center;
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                font-size: 2.5rem;
+            }
+            
+            .contact-form-section p {
+                text-align: center;
+                color: var(--text-secondary);
+                margin-bottom: 3rem;
+                font-size: 1.1rem;
+            }
+            
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-actions {
+                text-align: center;
+                margin-top: 2rem;
+            }
+            
+            .map-section {
+                padding: 4rem 0;
+                background: var(--white);
+            }
+            
+            .map-section h2 {
+                text-align: center;
+                color: var(--text-primary);
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+            }
+            
+            .map-container {
+                margin-bottom: 3rem;
+            }
+            
+            .map-placeholder {
+                background: var(--background-color);
+                border: 2px dashed var(--border-color);
+                border-radius: var(--border-radius);
+                padding: 4rem 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .map-placeholder i {
+                font-size: 4rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .map-placeholder h3 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .map-placeholder p {
+                color: var(--text-secondary);
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .office-info {
+                background: var(--background-color);
+                padding: 3rem 2rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+            
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+            
+            .info-item {
+                text-align: center;
+                padding: 1.5rem;
+                background: var(--white);
+                border-radius: 8px;
+                border: 1px solid var(--border-color);
+            }
+            
+            .info-item i {
+                font-size: 2rem;
+                color: var(--secondary-color);
+                margin-bottom: 1rem;
+            }
+            
+            .info-item h4 {
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+            }
+            
+            .info-item p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            @media (max-width: 768px) {
+                .contact-hero h1 {
+                    font-size: 2rem;
+                }
+                
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+                
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .map-placeholder {
+                    padding: 2rem 1rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
