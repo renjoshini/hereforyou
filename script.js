@@ -667,8 +667,29 @@ function searchServices() {
     }
 }
 
-// Initialize the application
+// Fix smooth scrolling for anchor links
+function scrollToServices() {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        // If on different page, go to homepage with services section
+        window.location.href = 'index.html#services';
+    }
+}
+
+// Handle anchor links on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if there's a hash in the URL
+    if (window.location.hash === '#services') {
+        setTimeout(() => {
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100);
+    }
+    
     initializePage();
     
     // Check authentication state
@@ -680,7 +701,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners for search
     const searchBtn = document.querySelector('.search-btn');
     if (searchBtn) searchBtn.addEventListener('click', searchServices);
+    
+    // Add event listeners for anchor links
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('a[href="#services"]')) {
+            e.preventDefault();
+            scrollToServices();
+        }
+    });
 });
+
+// Initialize the application
+// (Moved above to avoid duplication)
 
 function updateNavigation() {
     const authButtons = document.querySelector('.nav-links');
