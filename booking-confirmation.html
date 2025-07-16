@@ -73,7 +73,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <span class="label">Address</span>
-                                <span class="value" id="bookingAddress">123 Main Street, Kochi, Kerala</span>
+                                <span class="value" id="bookingAddress">123 Main Street,trivandrum, Kerala</span>
                             </div>
                         </div>
                         
@@ -270,7 +270,7 @@
                         `January ${booking.date}, 2024 at ${booking.time}`;
                     document.getElementById('bookingService').textContent = booking.service;
                     document.getElementById('bookingProfessional').textContent = booking.professional;
-                    document.getElementById('bookingAddress').textContent = booking.address || '123 Main Street, Kochi, Kerala';
+                    document.getElementById('bookingAddress').textContent = booking.address || '123 Main Street, Trivandrum, Kerala';
                     document.getElementById('bookingPayment').textContent = 
                         booking.paymentMethod === 'cash' ? 'Cash After Service' : 
                         booking.paymentMethod === 'upi' ? 'UPI Payment' :
