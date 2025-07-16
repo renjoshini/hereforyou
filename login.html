@@ -79,7 +79,7 @@
         </div>
 
         <div class="social-login">
-          <button
+          <button type="button"
             class="btn-outline"
             style="width: 100%; margin-bottom: 1rem;"
             onclick="loginWithGoogle()"
@@ -138,7 +138,7 @@
       const password = document.getElementById("password").value.trim();
 
       const userData = {
-        name: "Renjini Xavier", // Replace with dynamic name if available
+        name: email.split('@')[0] || "User", // Use email prefix as name
         email: email,
         phone: Phone,
         membership: "", // <-- EMPTY to NOT show membership on profile

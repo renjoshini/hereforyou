@@ -1,3 +1,4 @@
+/* Enhanced styles with better button functionality */
 :root {
   --primary-color: #4CAF50;       /* Vibrant Green */
   --secondary-color: #2196F3;     /* Bright Blue */
@@ -33,6 +34,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 /* Header */
@@ -83,11 +88,28 @@ body {
   color: var(--primary-color);
 }
 
+/* Mobile menu styles */
+.nav-links.mobile-active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
 .mobile-menu-toggle {
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--text-primary);
+}
+
+.mobile-menu-toggle:hover {
+  color: var(--primary-color);
 }
 
 /* Buttons */
@@ -101,6 +123,7 @@ body {
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  user-select: none;
 }
 
 .btn-primary {
@@ -110,6 +133,7 @@ body {
 
 .btn-primary:hover {
   background: #45A049;
+  cursor: pointer;
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
@@ -121,6 +145,7 @@ body {
 
 .btn-secondary:hover {
   background: #1976D2;
+  cursor: pointer;
   transform: translateY(-2px);
 }
 
@@ -132,6 +157,7 @@ body {
 
 .btn-outline:hover {
   background: var(--primary-color);
+  cursor: pointer;
   color: var(--white);
 }
 
@@ -620,7 +646,7 @@ body {
   border-color: var(--primary-color);
 }
 
-/* Notification Styles */
+/* Enhanced notification styles */
 .notification {
   position: fixed;
   top: 20px;
@@ -630,7 +656,16 @@ body {
   color: var(--white);
   font-weight: 600;
   z-index: 1000;
-  animation: slideIn 0.3s ease;
+  animation: slideInRight 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-hover);
+  max-width: 400px;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .notification.success {
@@ -645,7 +680,7 @@ body {
   background: var(--warning-color);
 }
 
-@keyframes slideIn {
+@keyframes slideInRight {
   from {
     transform: translateX(100%);
     opacity: 0;
@@ -664,6 +699,10 @@ body {
 
   .mobile-menu-toggle {
     display: block;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
   }
 
   .hero h1 {
@@ -757,6 +796,12 @@ body {
   .dashboard-grid {
    
     grid-template-columns: 1fr;
+  }
+  
+  .notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
   }
 }
 

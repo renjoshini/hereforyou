@@ -251,6 +251,7 @@ function chatWithProfessional() {
 }
 
 function bookProfessional() {
+}
 // Booking Functions
 function renderBookingCalendar() {
     const calendarContainer = document.getElementById('calendarContainer');
