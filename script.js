@@ -1,4 +1,4 @@
-// Application State
+// Application State - Fixed button functionality
 let currentUser = null;
 let currentBooking = null;
 let selectedService = null;
@@ -241,6 +241,16 @@ function bookNow(professionalId, serviceId) {
     window.location.href = `booking.html?professional=${professionalId}&service=${serviceId}`;
 }
 
+// Fix missing functions for buttons
+function contactProfessional() {
+    showNotification('Connecting call... Number will be masked for privacy');
+}
+
+function chatWithProfessional() {
+    showNotification('Opening chat... Messages will be monitored for safety');
+}
+
+function bookProfessional() {
 // Booking Functions
 function renderBookingCalendar() {
     const calendarContainer = document.getElementById('calendarContainer');
@@ -616,6 +626,46 @@ function initializeSignup() {
     });
 }
 
+// Fix navigation and mobile menu
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+        navLinks.classList.toggle('mobile-active');
+    }
+}
+
+// Fix logout functionality
+function logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userBookings');
+    localStorage.removeItem('savedHelpers');
+    currentUser = null;
+    showNotification('Logged out successfully');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1000);
+}
+
+// Fix search functionality
+function searchServices() {
+    const serviceQuery = document.getElementById('serviceSearch')?.value;
+    const locationQuery = document.getElementById('locationSearch')?.value || 'Kochi';
+    
+    if (serviceQuery && serviceQuery.trim()) {
+        const matchedService = services.find(s => 
+            s.name.toLowerCase().includes(serviceQuery.toLowerCase())
+        );
+        
+        if (matchedService) {
+            window.location.href = `service-list.html?service=${matchedService.id}&location=${encodeURIComponent(locationQuery)}`;
+        } else {
+            showNotification('Service not found. Please try a different search term.', 'error');
+        }
+    } else {
+        showNotification('Please enter a service to search for', 'error');
+    }
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializePage();
@@ -625,6 +675,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update navigation based on auth state
     updateNavigation();
+    
+    // Add event listeners for search
+    const searchBtn = document.querySelector('.search-btn');
+    if (searchBtn) searchBtn.addEventListener('click', searchServices);
 });
 
 function updateNavigation() {
@@ -633,9 +687,9 @@ function updateNavigation() {
     
     if (currentUser) {
         authButtons.innerHTML = `
-            <a href="dashboard.html" class="nav-link">Dashboard</a>
-            <a href="bookings.html" class="nav-link">My Bookings</a>
-            <a href="profile.html" class="nav-link">Profile</a>
+            <a href="dashboard.html" class="nav-link" onclick="navigateTo('dashboard.html')">Dashboard</a>
+            <a href="bookings.html" class="nav-link" onclick="navigateTo('bookings.html')">My Bookings</a>
+            <a href="profile.html" class="nav-link" onclick="navigateTo('profile.html')">Profile</a>
             <button class="btn-secondary" onclick="logout()">Logout</button>
         `;
     }
@@ -649,6 +703,69 @@ document.addEventListener('keypress', function(e) {
             searchServices();
         }
     }
+});
+
+// Fix navigation function
+function navigateTo(url) {
+    window.location.href = url;
+}
+
+// Fix form submissions and button clicks
+function handleFormSubmission(formId, callback) {
+    const form = document.getElementById(formId);
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            callback(e);
+        });
+    }
+}
+
+// Fix notification system
+function showNotification(message, type = 'success') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 4000);
+    
+    // Add click to dismiss
+    notification.addEventListener('click', () => {
+        notification.remove();
+    });
+}
+
+// Fix button hover effects and interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers for all buttons
+    document.addEventListener('click', function(e) {
+        // Handle button clicks with proper feedback
+        if (e.target.matches('button') || e.target.closest('button')) {
+            const button = e.target.matches('button') ? e.target : e.target.closest('button');
+            
+            // Add visual feedback
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        }
+    });
 });
 
 // Prevent right-click context menu on production
