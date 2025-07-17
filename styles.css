@@ -223,6 +223,26 @@ button:active {
   border-right: 1px solid var(--border-color);
 }
 
+/* Style the datalist dropdown */
+datalist {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+datalist option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+datalist option:hover {
+  background: var(--background-color);
+}
+
 .search-btn {
   background: var(--primary-color);
   color: var(--white);

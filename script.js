@@ -147,8 +147,12 @@ function searchServices() {
     const locationQuery = document.getElementById('locationSearch').value;
     
     if (serviceQuery.trim()) {
+        // Extract just the service name (before the dash) if it includes description
+        const serviceName = serviceQuery.split(' - ')[0].trim();
+        
         const matchedService = services.find(s => 
-            s.name.toLowerCase().includes(serviceQuery.toLowerCase())
+            s.name.toLowerCase().includes(serviceName.toLowerCase()) ||
+            serviceName.toLowerCase().includes(s.name.toLowerCase())
         );
         
         if (matchedService) {
