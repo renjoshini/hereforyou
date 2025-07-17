@@ -34,7 +34,7 @@ const professionals = {
             reviews: 156,
             experience: '8 years',
             hourlyRate: '₹300/hour',
-            location: 'Kariavattom, Kochi',
+            location: '128 Eastfort, Trivandrum',
             verified: true,
             availability: ['2025-01-15', '2025-01-16', '2025-01-17'],
             specialties: ['Pipe repairs', 'Bathroom fittings', 'Water heater service']
