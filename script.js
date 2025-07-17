@@ -36,7 +36,7 @@ const professionals = {
             hourlyRate: '₹300/hour',
             location: 'Kariavattom, Kochi',
             verified: true,
-            availability: ['2024-01-15', '2024-01-16', '2024-01-17'],
+            availability: ['2025-01-15', '2025-01-16', '2025-01-17'],
             specialties: ['Pipe repairs', 'Bathroom fittings', 'Water heater service']
         },
         {
@@ -48,21 +48,21 @@ const professionals = {
             hourlyRate: '₹250/hour',
             location: 'Thekumood,Trivandrum',
             verified: true,
-            availability: ['2024-01-15', '2024-01-16'],
+            availability: ['2025-01-15', '2025-01-16'],
             specialties: ['Drainage cleaning', 'Tap repairs', 'Pipeline installation']
         }
     ],
     'ac-repair': [
         {
             id: 'a1',
-            name: 'Renjini Devi',
+            name: ' Devi',
             rating: 4.9,
             reviews: 203,
             experience: '10 years',
             hourlyRate: '₹400/hour',
             location: 'Vazhuthacaud, Thiruvananthapuram',
             verified: true,
-            availability: ['2024-01-15', '2024-01-17'],
+            availability: ['2025-01-15', '2025-01-17'],
             specialties: ['Split AC service', 'Window AC repair', 'Installation']
         }
     ],
@@ -76,7 +76,7 @@ const professionals = {
             hourlyRate: '₹200/hour',
             location: 'Manacaud,Trivandrum',
             verified: true,
-            availability: ['2024-01-15', '2024-01-16', '2024-01-17'],
+            availability: ['2025-01-15', '2025-01-16', '2025-01-17'],
             specialties: ['House cleaning', 'Cooking', 'Laundry']
         }
     ]
