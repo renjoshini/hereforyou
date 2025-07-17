@@ -74,7 +74,7 @@ const professionals = {
             reviews: 134,
             experience: '6 years',
             hourlyRate: '₹200/hour',
-            location: 'Manacaud,Trivandrum',
+            location: '89 Green lane, Trivandrum',
             verified: true,
             availability: ['2025-01-15', '2025-01-16', '2025-01-17'],
             specialties: ['House cleaning', 'Cooking', 'Laundry']
