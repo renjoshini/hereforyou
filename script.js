@@ -654,7 +654,7 @@ function logout() {
 // Fix search functionality
 function searchServices() {
     const serviceQuery = document.getElementById('serviceSearch')?.value;
-    const locationQuery = document.getElementById('locationSearch')?.value || Trivandrum';
+    const locationQuery = document.getElementById('locationSearch')?.value || Trivandrum;
     
     if (serviceQuery && serviceQuery.trim()) {
         const matchedService = services.find(s => 
