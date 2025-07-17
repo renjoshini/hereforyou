@@ -38,25 +38,15 @@
                 
                 <div class="search-container mt-2">
                     <div class="search-box">
-                        <input type="text" placeholder="Search for services..." id="serviceSearch" list="servicesList">
-                        <datalist id="servicesList">
-                            <option value="Plumbing">Plumbing - Pipe repairs, leaks, installations</option>
-                            <option value="AC Repair">AC Repair - AC service, installation, maintenance</option>
-                            <option value="Car Repair">Car Repair - Auto service, repairs, maintenance</option>
-                            <option value="Appliance Repair">Appliance Repair - Home appliance repairs</option>
-                            <option value="Electrical">Electrical - Wiring, repairs, installations</option>
-                            <option value="Caretaker">Caretaker - Elder care, patient care</option>
-                            <option value="Maid Service">Maid Service - House cleaning, maintenance</option>
-                            <option value="Cook">Cook - Home cooking, meal preparation</option>
-                            <option value="Gardening">Gardening - Garden maintenance, landscaping</option>
-                            <option value="Home Cleaning">Home Cleaning - Deep cleaning, regular cleaning</option>
-                            <option value="Car Cleaning">Car Cleaning - Car wash, detailing</option>
-                            <option value="Pest Control">Pest Control - Termite, insects, rodents</option>
-                            <option value="Laundry">Laundry - Washing, ironing, dry cleaning</option>
-                            <option value="Healthcare">Healthcare - Nurses, physiotherapy</option>
-                            <option value="Babysitting">Babysitting - Child care, nanny services</option>
-                            <option value="Tailoring">Tailoring - Stitching, alterations, repairs</option>
-                        </datalist>
+                        <div class="search-input-container">
+                            <input type="text" placeholder="Search for services..." id="serviceSearch" list="servicesList">
+                            <div class="dropdown-arrow" onclick="toggleServicesDropdown()">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="services-dropdown" id="servicesDropdown">
+                                <!-- Services will be populated by JavaScript -->
+                            </div>
+                        </div>
                         <input type="text" placeholder="Your location" id="locationSearch" value="Trivandrum">
                         <button class="search-btn" onclick="searchServices()">
                             <i class="fas fa-search"></i> Search

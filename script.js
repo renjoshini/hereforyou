@@ -718,6 +718,87 @@ document.addEventListener('DOMContentLoaded', function() {
 // Initialize the application
 // (Moved above to avoid duplication)
 
+// Custom dropdown functions
+function toggleServicesDropdown() {
+    const dropdown = document.getElementById('servicesDropdown');
+    const isVisible = dropdown.style.display === 'block';
+    
+    // Close all dropdowns first
+    document.querySelectorAll('.services-dropdown').forEach(d => {
+        d.style.display = 'none';
+    });
+    
+    if (!isVisible) {
+        dropdown.style.display = 'block';
+        populateServicesDropdown();
+    }
+}
+
+function populateServicesDropdown() {
+    const dropdown = document.getElementById('servicesDropdown');
+    if (!dropdown) return;
+    
+    dropdown.innerHTML = services.map(service => `
+        <div class="dropdown-item" onclick="selectServiceFromDropdown('${service.name}', '${service.id}')">
+            <div class="service-icon">
+                <i class="${service.icon}"></i>
+            </div>
+            <div class="service-info">
+                <div class="service-name">${service.name}</div>
+                <div class="service-desc">${service.description}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function selectServiceFromDropdown(serviceName, serviceId) {
+    const searchInput = document.getElementById('serviceSearch');
+    searchInput.value = serviceName;
+    
+    // Close dropdown
+    document.getElementById('servicesDropdown').style.display = 'none';
+    
+    // Optionally trigger search immediately
+    // searchServices();
+}
+
+function filterServices() {
+    const searchTerm = document.getElementById('serviceSearch').value.toLowerCase();
+    const dropdown = document.getElementById('servicesDropdown');
+    
+    if (!dropdown || dropdown.style.display === 'none') return;
+    
+    const filteredServices = services.filter(service => 
+        service.name.toLowerCase().includes(searchTerm) ||
+        service.description.toLowerCase().includes(searchTerm)
+    );
+    
+    dropdown.innerHTML = filteredServices.map(service => `
+        <div class="dropdown-item" onclick="selectServiceFromDropdown('${service.name}', '${service.id}')">
+            <div class="service-icon">
+                <i class="${service.icon}"></i>
+            </div>
+            <div class="service-info">
+                <div class="service-name">${service.name}</div>
+                <div class="service-desc">${service.description}</div>
+            </div>
+        </div>
+    `).join('');
+    
+    if (filteredServices.length === 0) {
+        dropdown.innerHTML = '<div class="dropdown-item no-results">No services found</div>';
+    }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-input-container')) {
+        document.querySelectorAll('.services-dropdown').forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+});
+
 function updateNavigation() {
     const authButtons = document.querySelector('.nav-links');
     if (!authButtons) return;
