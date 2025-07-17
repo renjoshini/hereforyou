@@ -34,7 +34,7 @@ const professionals = {
             reviews: 156,
             experience: '8 years',
             hourlyRate: '₹300/hour',
-            location: 'Kakkanad, Kochi',
+            location: 'Kariavattom, Kochi',
             verified: true,
             availability: ['2024-01-15', '2024-01-16', '2024-01-17'],
             specialties: ['Pipe repairs', 'Bathroom fittings', 'Water heater service']
@@ -46,7 +46,7 @@ const professionals = {
             reviews: 89,
             experience: '5 years',
             hourlyRate: '₹250/hour',
-            location: 'Ernakulam, Kochi',
+            location: 'Thekumood,Trivandrum',
             verified: true,
             availability: ['2024-01-15', '2024-01-16'],
             specialties: ['Drainage cleaning', 'Tap repairs', 'Pipeline installation']
@@ -74,7 +74,7 @@ const professionals = {
             reviews: 134,
             experience: '6 years',
             hourlyRate: '₹200/hour',
-            location: 'Palarivattom, Kochi',
+            location: 'Manacaud,Trivandrum',
             verified: true,
             availability: ['2024-01-15', '2024-01-16', '2024-01-17'],
             specialties: ['House cleaning', 'Cooking', 'Laundry']
@@ -178,7 +178,7 @@ function renderServices() {
 }
 
 function selectService(serviceId) {
-    const location = document.getElementById('locationSearch')?.value || 'Kochi';
+    const location = document.getElementById('locationSearch')?.value || 'Trivandrum';
     window.location.href = `service-list.html?service=${serviceId}&location=${encodeURIComponent(location)}`;
 }
 
@@ -404,7 +404,7 @@ function initializeServiceList() {
         const service = services.find(s => s.id === serviceId);
         if (service) {
             document.getElementById('serviceTitle').textContent = service.name;
-            document.getElementById('locationDisplay').textContent = location || 'Kochi';
+            document.getElementById('locationDisplay').textContent = location || 'Trivandrum';
             renderProfessionals(serviceId);
         }
     }
@@ -654,7 +654,7 @@ function logout() {
 // Fix search functionality
 function searchServices() {
     const serviceQuery = document.getElementById('serviceSearch')?.value;
-    const locationQuery = document.getElementById('locationSearch')?.value || 'Kochi';
+    const locationQuery = document.getElementById('locationSearch')?.value || Trivandrum';
     
     if (serviceQuery && serviceQuery.trim()) {
         const matchedService = services.find(s => 
