@@ -88,7 +88,7 @@ export const db = {
   },
 
   // Professionals
-  async getProfessionals(filters = {}) {
+  async getProfessionals(filters = {}, userLocation = null) {
     let query = supabase
       .from('professionals')
       .select(`
@@ -110,13 +110,31 @@ export const db = {
       query = query.eq('city', filters.city)
     }
 
+    if (filters.area) {
+      query = query.contains('areas_served', [filters.area])
+    }
+
     if (filters.minRating) {
       query = query.gte('rating_average', filters.minRating)
+    }
+
+    if (filters.maxPrice) {
+      query = query.lte('hourly_rate', filters.maxPrice)
     }
 
     const { data, error } = await query.order('rating_average', { ascending: false })
     
     if (error) throw error
+    
+    // Add estimated distance if user location is provided
+    if (userLocation && data) {
+      return data.map(prof => ({
+        ...prof,
+        estimated_distance: calculateDistance(userLocation, prof.city),
+        estimated_time: Math.ceil(calculateDistance(userLocation, prof.city) * 2) // 2 minutes per km
+      }))
+    }
+    
     return data
   },
 
@@ -285,6 +303,51 @@ export const db = {
     }
   },
 
+  // Location-based search
+  async searchProfessionalsByLocation(serviceCategory, userLocation, radius = 10) {
+    const { data, error } = await supabase
+      .from('professionals')
+      .select(`
+        *,
+        profiles:user_id (
+          full_name,
+          avatar_url,
+          phone
+        )
+      `)
+      .contains('services', [serviceCategory])
+      .eq('verification_status', 'verified')
+      .eq('is_available', true)
+      .order('rating_average', { ascending: false })
+    
+    if (error) throw error
+    
+    // Filter by location and add distance calculations
+    return data
+      .map(prof => ({
+        ...prof,
+        estimated_distance: calculateDistance(userLocation, prof.city),
+        estimated_time: Math.ceil(calculateDistance(userLocation, prof.city) * 2)
+      }))
+      .filter(prof => prof.estimated_distance <= radius)
+      .sort((a, b) => a.estimated_distance - b.estimated_distance)
+  },
+
+  // Get professional availability
+  async getProfessionalAvailability(professionalId, date) {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('scheduled_time')
+      .eq('professional_id', professionalId)
+      .eq('scheduled_date', date)
+      .in('status', ['confirmed', 'in_progress'])
+    
+    if (error) throw error
+    
+    // Return booked time slots
+    return data.map(booking => booking.scheduled_time)
+  },
+
   // Support
   async createSupportTicket(ticketData) {
     const { data, error } = await supabase
@@ -319,6 +382,31 @@ export const db = {
     if (error) throw error
     return data
   }
+}
+
+// Helper function to calculate distance (simplified)
+function calculateDistance(location1, location2) {
+  // Simplified distance calculation for demo
+  // In production, use proper geolocation APIs
+  const distances = {
+    'Pattom': 2,
+    'Kowdiar': 3,
+    'Vazhuthacaud': 4,
+    'Kazhakkoottam': 8,
+    'Technopark': 10,
+    'Pallippuram': 12,
+    'Sasthamangalam': 5,
+    'Ulloor': 6,
+    'Medical College': 4,
+    'Nemom': 15,
+    'Balaramapuram': 18,
+    'Neyyattinkara': 25,
+    'Vattiyoorkavu': 7,
+    'Kudappanakunnu': 9,
+    'Peroorkada': 11
+  }
+  
+  return distances[location2] || 5 // Default 5km if not found
 }
 
 // Real-time subscriptions

@@ -654,7 +654,7 @@ function logout() {
 // Fix search functionality
 function searchServices() {
     const serviceQuery = document.getElementById('serviceSearch')?.value;
-    const locationQuery = document.getElementById('locationSearch')?.value || Trivandrum;
+    const locationQuery = document.getElementById('locationSearch')?.value || 'Trivandrum';
     
     if (serviceQuery && serviceQuery.trim()) {
         const matchedService = services.find(s => 
@@ -668,6 +668,28 @@ function searchServices() {
         }
     } else {
         showNotification('Please enter a service to search for', 'error');
+    }
+}
+
+// Set location function
+function setLocation(location) {
+    const locationInput = document.getElementById('locationSearch');
+    if (locationInput) {
+        locationInput.value = location;
+        localStorage.setItem('userLocation', location);
+        showNotification(`Location set to ${location}`);
+    }
+}
+
+// Initialize location on page load
+function initializeLocation() {
+    const savedLocation = localStorage.getItem('userLocation');
+    const locationInput = document.getElementById('locationSearch');
+    
+    if (savedLocation && locationInput) {
+        locationInput.value = savedLocation;
+    } else if (locationInput && !locationInput.value) {
+        locationInput.value = 'Trivandrum'; // Default location
     }
 }
 
@@ -701,6 +723,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update navigation based on auth state
     updateNavigation();
+    
+    // Initialize location
+    initializeLocation();
     
     // Add event listeners for search
     const searchBtn = document.querySelector('.search-btn');

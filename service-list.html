@@ -43,16 +43,17 @@
                 <div class="filters-container">
                     <div class="filter-group">
                         <label>Sort by:</label>
-                        <select id="sortBy" onchange="sortProfessionals()">
+                        <select id="sortBy" onchange="window.sortProfessionals()">
                             <option value="nearest">Nearest</option>
                             <option value="rating">Highest Rating</option>
                             <option value="price">Lowest Price</option>
-                            <option value="reviews">Most Reviews</option>
+                            <option value="experience">Most Experienced</option>
+                            <option value="distance">By Distance</option>
                         </select>
                     </div>
                     <div class="filter-group">
                         <label>Rating:</label>
-                        <select id="filterRating" onchange="filterProfessionals()">
+                        <select id="filterRating" onchange="window.filterProfessionals()">
                             <option value="all">All Ratings</option>
                             <option value="4.5">4.5+ Stars</option>
                             <option value="4.0">4.0+ Stars</option>
@@ -61,7 +62,7 @@
                     </div>
                     <div class="filter-group">
                         <label>Price Range:</label>
-                        <select id="filterPrice" onchange="filterProfessionals()">
+                        <select id="filterPrice" onchange="window.filterProfessionals()">
                             <option value="all">All Prices</option>
                             <option value="low">Under ₹200/hr</option>
                             <option value="medium">₹200-400/hr</option>
@@ -70,12 +71,17 @@
                     </div>
                     <div class="filter-group">
                         <label>Availability:</label>
-                        <select id="filterAvailability" onchange="filterProfessionals()">
+                        <select id="filterAvailability" onchange="window.filterProfessionals()">
                             <option value="all">All</option>
                             <option value="today">Available Today</option>
                             <option value="tomorrow">Available Tomorrow</option>
                             <option value="weekend">Available Weekend</option>
                         </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn-outline" onclick="window.changeLocation()">
+                            <i class="fas fa-map-marker-alt"></i> Change Location
+                        </button>
                     </div>
                 </div>
             </div>
@@ -163,35 +169,6 @@
       })
     </script>
     <script>
-        function changeLocation() {
-            const newLocation = prompt('Enter your location:', document.getElementById('locationDisplay').textContent);
-            if (newLocation) {
-                document.getElementById('locationDisplay').textContent = newLocation;
-                showNotification('Location updated to ' + newLocation);
-            }
-        }
-        
-        function sortProfessionals() {
-            const sortBy = document.getElementById('sortBy').value;
-            showNotification('Sorting by ' + sortBy);
-            // Re-render professionals with sorting logic
-            const urlParams = new URLSearchParams(window.location.search);
-            const serviceId = urlParams.get('service');
-            renderProfessionals(serviceId);
-        }
-        
-        function filterProfessionals() {
-            const rating = document.getElementById('filterRating').value;
-            const price = document.getElementById('filterPrice').value;
-            const availability = document.getElementById('filterAvailability').value;
-            
-            showNotification('Filters applied');
-            // Re-render professionals with filtering logic
-            const urlParams = new URLSearchParams(window.location.search);
-            const serviceId = urlParams.get('service');
-            renderProfessionals(serviceId);
-        }
-        
         // Enhanced professional card rendering with actions
         function renderProfessionals(serviceId) {
             const professionalsList = document.getElementById('professionalsList');
@@ -336,7 +313,7 @@
             
             .filters-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
                 gap: 1rem;
             }
             
@@ -353,6 +330,11 @@
                 border: 2px solid var(--border-color);
                 border-radius: 8px;
                 font-size: 0.9rem;
+            }
+            
+            .filter-group button {
+                width: 100%;
+                margin-top: 1.5rem;
             }
             
             .section-header {
@@ -418,6 +400,12 @@
             }
             
             .specialties {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .service-areas {
                 color: var(--text-secondary);
                 font-size: 0.9rem;
                 margin-bottom: 1rem;

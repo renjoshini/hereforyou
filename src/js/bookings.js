@@ -106,6 +106,16 @@ async function handleBookingSubmission(event) {
     const user = await auth.getCurrentUser()
     const formData = new FormData(event.target)
     
+    // Validate required fields
+    const requiredFields = ['address', 'city', 'pincode', 'contactName', 'contactPhone']
+    for (const field of requiredFields) {
+      if (!formData.get(field)) {
+        showNotification(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`, 'error')
+        document.getElementById(field).focus()
+        return
+      }
+    }
+    
     // Prepare booking data
     const bookingData = {
       customer_id: user.id,
@@ -125,8 +135,18 @@ async function handleBookingSubmission(event) {
       special_instructions: formData.get('instructions')
     }
     
+    // Show loading state
+    const submitButton = event.target.querySelector('button[type="submit"]')
+    const originalText = submitButton.innerHTML
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Booking...'
+    submitButton.disabled = true
+    
     // Create booking
     const booking = await db.createBooking(bookingData)
+    
+    // Restore button state
+    submitButton.innerHTML = originalText
+    submitButton.disabled = false
     
     showNotification('Booking confirmed successfully!')
     
@@ -137,6 +157,14 @@ async function handleBookingSubmission(event) {
     
   } catch (error) {
     console.error('Booking submission error:', error)
+    
+    // Restore button state on error
+    const submitButton = event.target.querySelector('button[type="submit"]')
+    if (submitButton) {
+      submitButton.innerHTML = '<i class="fas fa-check"></i> Confirm Booking'
+      submitButton.disabled = false
+    }
+    
     showNotification(error.message || 'Failed to create booking', 'error')
   }
 }

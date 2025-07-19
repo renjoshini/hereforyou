@@ -24,6 +24,19 @@ export async function initAuth() {
 // Sign up function
 export async function signUp(formData) {
   try {
+    // Validate input
+    if (!formData.email || !formData.password) {
+      throw new Error('Email and password are required')
+    }
+    
+    if (formData.password.length < 8) {
+      throw new Error('Password must be at least 8 characters long')
+    }
+    
+    if (!formData.phone || formData.phone.length !== 10) {
+      throw new Error('Please enter a valid 10-digit phone number')
+    }
+
     const userData = {
       full_name: `${formData.firstName} ${formData.lastName}`,
       phone: formData.phone,
@@ -50,7 +63,17 @@ export async function signUp(formData) {
 // Sign in function
 export async function signIn(email, password) {
   try {
+    // Validate input
+    if (!email || !password) {
+      throw new Error('Email and password are required')
+    }
+
     const { user } = await auth.signIn(email, password)
+    
+    if (!user) {
+      throw new Error('Invalid email or password')
+    }
+    
     currentUser = user
     userProfile = await auth.getUserProfile(user.id)
     

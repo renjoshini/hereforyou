@@ -3,12 +3,20 @@ import { db } from '../lib/supabase.js'
 // Services management
 let allServices = []
 let allProfessionals = []
+let userLocation = 'Trivandrum' // Default location
 
 // Initialize services
 export async function initServices() {
   try {
     allServices = await db.getServices()
     renderServices()
+    
+    // Initialize location if available
+    const savedLocation = localStorage.getItem('userLocation')
+    if (savedLocation) {
+      userLocation = savedLocation
+      updateLocationDisplay()
+    }
   } catch (error) {
     console.error('Error loading services:', error)
     showNotification('Error loading services', 'error')
@@ -41,14 +49,21 @@ export function selectService(serviceCategory) {
 // Load professionals for a service
 export async function loadProfessionals(serviceCategory, location) {
   try {
+    // Save user location
+    userLocation = location
+    localStorage.setItem('userLocation', location)
+    
     const filters = {
       service: serviceCategory,
       city: location
     }
     
-    allProfessionals = await db.getProfessionals(filters)
+    allProfessionals = await db.getProfessionals(filters, userLocation)
     renderProfessionals()
     updateServiceInfo(serviceCategory, location)
+    
+    // Update filter options based on loaded professionals
+    updateFilterOptions()
   } catch (error) {
     console.error('Error loading professionals:', error)
     showNotification('Error loading professionals', 'error')
@@ -82,7 +97,7 @@ function renderProfessionals() {
         </div>
         <div class="professional-info">
           <h3>${prof.profiles.full_name}</h3>
-          <p>${prof.city}</p>
+          <p><i class="fas fa-map-marker-alt"></i> ${prof.areas_served ? prof.areas_served[0] : prof.city}</p>
           ${prof.verification_status === 'verified' ? '<span class="verified-badge"><i class="fas fa-check-circle"></i> KYC Verified</span>' : ''}
         </div>
         <div class="professional-actions-quick">
@@ -107,14 +122,32 @@ function renderProfessionals() {
             <i class="fas fa-rupee-sign"></i>
             <span>₹${prof.hourly_rate}/hour</span>
           </div>
+          ${prof.estimated_distance ? `
+            <div class="stat">
+              <i class="fas fa-route"></i>
+              <span>${prof.estimated_distance}km away</span>
+            </div>
+          ` : ''}
+          ${prof.estimated_time ? `
+            <div class="stat">
+              <i class="fas fa-clock"></i>
+              <span>~${prof.estimated_time}min to reach</span>
+            </div>
+          ` : ''}
         </div>
         <div class="specialties">
-          <strong>Skills:</strong> ${prof.skills ? prof.skills.slice(0, 2).join(', ') : 'Professional service'}
+          <strong>Skills:</strong> ${prof.skills ? prof.skills.slice(0, 2).join(', ') : prof.description.substring(0, 50) + '...'}
         </div>
         <div class="availability-indicator">
           <i class="fas fa-circle" style="color: var(--success-color);"></i>
           <span>Available today</span>
         </div>
+        ${prof.areas_served && prof.areas_served.length > 1 ? `
+          <div class="service-areas">
+            <strong>Service Areas:</strong> ${prof.areas_served.slice(0, 3).join(', ')}
+            ${prof.areas_served.length > 3 ? ` +${prof.areas_served.length - 3} more` : ''}
+          </div>
+        ` : ''}
       </div>
       <div class="professional-actions">
         <button class="btn-outline" onclick="viewProfile('${prof.id}')">
@@ -129,6 +162,124 @@ function renderProfessionals() {
       </div>
     </div>
   `).join('')
+}
+
+// Update filter options based on loaded professionals
+function updateFilterOptions() {
+  // Update price range filter
+  const priceFilter = document.getElementById('filterPrice')
+  if (priceFilter && allProfessionals.length > 0) {
+    const rates = allProfessionals.map(p => p.hourly_rate)
+    const minRate = Math.min(...rates)
+    const maxRate = Math.max(...rates)
+    
+    // Update price filter options dynamically
+    priceFilter.innerHTML = `
+      <option value="all">All Prices</option>
+      <option value="low">Under ₹${Math.ceil(minRate + (maxRate - minRate) * 0.33)}/hr</option>
+      <option value="medium">₹${Math.ceil(minRate + (maxRate - minRate) * 0.33)}-${Math.ceil(minRate + (maxRate - minRate) * 0.67)}/hr</option>
+      <option value="high">Above ₹${Math.ceil(minRate + (maxRate - minRate) * 0.67)}/hr</option>
+    `
+  }
+}
+
+// Filter professionals based on criteria
+export function filterProfessionals() {
+  const ratingFilter = document.getElementById('filterRating')?.value
+  const priceFilter = document.getElementById('filterPrice')?.value
+  const availabilityFilter = document.getElementById('filterAvailability')?.value
+  
+  let filteredProfessionals = [...allProfessionals]
+  
+  // Apply rating filter
+  if (ratingFilter && ratingFilter !== 'all') {
+    const minRating = parseFloat(ratingFilter)
+    filteredProfessionals = filteredProfessionals.filter(prof => prof.rating_average >= minRating)
+  }
+  
+  // Apply price filter
+  if (priceFilter && priceFilter !== 'all') {
+    const rates = allProfessionals.map(p => p.hourly_rate)
+    const minRate = Math.min(...rates)
+    const maxRate = Math.max(...rates)
+    
+    switch (priceFilter) {
+      case 'low':
+        filteredProfessionals = filteredProfessionals.filter(prof => 
+          prof.hourly_rate < minRate + (maxRate - minRate) * 0.33)
+        break
+      case 'medium':
+        filteredProfessionals = filteredProfessionals.filter(prof => 
+          prof.hourly_rate >= minRate + (maxRate - minRate) * 0.33 && 
+          prof.hourly_rate <= minRate + (maxRate - minRate) * 0.67)
+        break
+      case 'high':
+        filteredProfessionals = filteredProfessionals.filter(prof => 
+          prof.hourly_rate > minRate + (maxRate - minRate) * 0.67)
+        break
+    }
+  }
+  
+  // Update the display with filtered results
+  const originalProfessionals = allProfessionals
+  allProfessionals = filteredProfessionals
+  renderProfessionals()
+  allProfessionals = originalProfessionals // Restore original list
+}
+
+// Sort professionals
+export function sortProfessionals() {
+  const sortBy = document.getElementById('sortBy')?.value
+  
+  switch (sortBy) {
+    case 'rating':
+      allProfessionals.sort((a, b) => b.rating_average - a.rating_average)
+      break
+    case 'price':
+      allProfessionals.sort((a, b) => a.hourly_rate - b.hourly_rate)
+      break
+    case 'experience':
+      allProfessionals.sort((a, b) => b.experience_years - a.experience_years)
+      break
+    case 'distance':
+      allProfessionals.sort((a, b) => (a.estimated_distance || 999) - (b.estimated_distance || 999))
+      break
+    case 'nearest':
+    default:
+      allProfessionals.sort((a, b) => (a.estimated_distance || 999) - (b.estimated_distance || 999))
+      break
+  }
+  
+  renderProfessionals()
+}
+
+// Update location display
+function updateLocationDisplay() {
+  const locationDisplays = document.querySelectorAll('#locationDisplay, #locationSearch')
+  locationDisplays.forEach(element => {
+    if (element) {
+      element.value = userLocation
+      element.textContent = userLocation
+    }
+  })
+}
+
+// Change location
+export function changeLocation() {
+  const newLocation = prompt('Enter your location:', userLocation)
+  if (newLocation && newLocation.trim()) {
+    userLocation = newLocation.trim()
+    localStorage.setItem('userLocation', userLocation)
+    updateLocationDisplay()
+    showNotification(`Location updated to ${userLocation}`)
+    
+    // Reload professionals for current service if on service list page
+    const urlParams = new URLSearchParams(window.location.search)
+    const serviceCategory = urlParams.get('service')
+    if (serviceCategory) {
+      loadProfessionals(serviceCategory, userLocation)
+    }
+  }
 }
 
 // Update service info on service list page
