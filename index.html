@@ -176,5 +176,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { initAuth } from './src/js/auth.js'
+      import { initServices } from './src/js/services.js'
+      
+      document.addEventListener('DOMContentLoaded', async function() {
+        await initAuth()
+        await initServices()
+      })
+    </script>
   </body>
 </html>

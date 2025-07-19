@@ -127,6 +127,13 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { loadUserBookings } from './src/js/bookings.js'
+      
+      document.addEventListener('DOMContentLoaded', async function() {
+        await loadUserBookings()
+      })
+    </script>
     <script>
         let allBookings = [];
         let currentFilter = 'all';

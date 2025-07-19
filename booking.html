@@ -252,6 +252,13 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { initBooking } from './src/js/bookings.js'
+      
+      document.addEventListener('DOMContentLoaded', async function() {
+        await initBooking()
+      })
+    </script>
     <script>
         // Initialize booking form
         document.addEventListener('DOMContentLoaded', function() {

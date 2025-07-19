@@ -149,6 +149,19 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { loadProfessionals } from './src/js/services.js'
+      
+      document.addEventListener('DOMContentLoaded', async function() {
+        const urlParams = new URLSearchParams(window.location.search)
+        const serviceCategory = urlParams.get('service')
+        const location = urlParams.get('location') || 'Trivandrum'
+        
+        if (serviceCategory) {
+          await loadProfessionals(serviceCategory, location)
+        }
+      })
+    </script>
     <script>
         function changeLocation() {
             const newLocation = prompt('Enter your location:', document.getElementById('locationDisplay').textContent);

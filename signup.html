@@ -133,6 +133,59 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { signUp } from './src/js/auth.js'
+      
+      document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault()
+        
+        const formData = {
+          firstName: document.getElementById('name').value.split(' ')[0],
+          lastName: document.getElementById('name').value.split(' ').slice(1).join(' ') || '',
+          email: document.getElementById('email').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          password: document.getElementById('password').value,
+          confirmPassword: document.getElementById('confirmPassword').value
+        }
+        
+        // Validation
+        if (!formData.firstName.trim()) {
+          alert('Please enter your name')
+          return
+        }
+        
+        if (!formData.email || !formData.email.includes('@')) {
+          alert('Please enter a valid email')
+          return
+        }
+        
+        if (!formData.phone || formData.phone.length !== 10) {
+          alert('Please enter a valid 10-digit phone number')
+          return
+        }
+        
+        if (formData.password.length < 8) {
+          alert('Password must be at least 8 characters')
+          return
+        }
+        
+        if (formData.password !== formData.confirmPassword) {
+          alert('Passwords do not match')
+          return
+        }
+        
+        if (!document.getElementById('agreeTerms').checked) {
+          alert('Please agree to terms and conditions')
+          return
+        }
+        
+        try {
+          await signUp(formData)
+        } catch (error) {
+          console.error('Signup error:', error)
+        }
+      })
+    </script>
     <script>
         function signupWithGoogle() {
             showNotification('Google signup will be available soon');
@@ -193,39 +246,6 @@
             }
         `;
         document.head.appendChild(style);
-    </script>
-
-    <!-- Add this signup form handling script -->
-    <script>
-      document.getElementById('signupForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-
-        if (password !== confirmPassword) {
-          alert('Passwords do not match!');
-          return;
-        }
-
-        const user = {
-          name,
-          email,
-          phone,
-          password,
-          membership: "Standard",
-          profilePicUrl: "https://cdn-icons-png.flaticon.com/512/847/847969.png"
-        };
-
-        localStorage.setItem('hereForYouUser', JSON.stringify(user));
-
-        alert('Signup successful! Please login now.');
-
-        window.location.href = 'login.html';
-      });
     </script>
 </body>
 </html>

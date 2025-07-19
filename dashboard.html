@@ -181,6 +181,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+      import { initAuth } from './src/js/auth.js'
+      import { initServices } from './src/js/services.js'
+      
+      document.addEventListener('DOMContentLoaded', async function() {
+        await initAuth()
+        await initServices()
+        
+        // Update welcome message
+        const user = window.getCurrentUser()
+        const profile = window.getUserProfile()
+        if (profile) {
+          document.getElementById('userWelcome').textContent = `Welcome back, ${profile.full_name.split(' ')[0]}!`
+        }
+      })
+    </script>
     <script>
         // Additional dashboard-specific styles
         const style = document.createElement('style');
